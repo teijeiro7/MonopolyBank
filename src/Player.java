@@ -7,7 +7,7 @@ public class Player {
     private int balance;
     private boolean bankrupt;
     private ArrayList<Property> properties;
-    private static Terminal terminal = new Terminal();
+    private static Terminal terminal;
 
     public Player(int id, Terminal terminal) {
         this.color = Color.values()[id];

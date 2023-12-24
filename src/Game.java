@@ -1,14 +1,11 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.security.Provider.Service;
-import java.util.Scanner;
-import java.util.ArrayList;
 
 public class Game {
     private MonopolyCode[] monopolyCodeArray;
-    private static Player[] players;
-    private static Terminal terminal = new Terminal();
+    private Player[] players;
+    private Terminal terminal;
 
     public void setMonopolyCodeArray(int size) {
         monopolyCodeArray = new MonopolyCode[size];
@@ -21,7 +18,9 @@ public class Game {
         // Lógica del flujo del juego
     }
 
-    public static void createPlayers() {
+    public void createPlayers() {
+        terminal = new Terminal();    
+
         System.out.print("Introduzca el número de jugadores: ");
         int numPlayers = terminal.read();
 
@@ -33,18 +32,17 @@ public class Game {
         }
     }
 
-    public static void loadMonopolyCodes() throws IOException {
+    public void loadMonopolyCodes() throws IOException {
         String archivo = "config/MonopolyCode.txt";
 
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] partes = linea.split(";");
-                System.out.println(partes[0] + " " + partes[1]);
+                System.out.println(partes[0]);
             }
         } catch (IOException e) {
             throw new IOException("Error al leer el archivo " + archivo, e);
         }
     }
-
 }
