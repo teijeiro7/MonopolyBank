@@ -1,18 +1,28 @@
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Player {
     private Color color;
     private String name;
     private int balance;
     private boolean bankrupt;
-    private Property[] properties;
+    private ArrayList<Property> properties;
+    private static Terminal terminal = new Terminal();
 
-    public Player(Color color, String name, int balance, boolean bankrupt, Property[] properties) {
-        this.color = color;
+    public Player(int id, Terminal terminal) {
+        this.color = Color.values()[id];
+        System.out.print("Introduzca el nombre del jugador " + (id + 1) + ": ");
+        String name = terminal.readString();
         this.name = name;
-        this.balance = balance;
-        this.bankrupt = bankrupt;
-        this.properties = properties;
+        this.balance = 1500;
+        this.bankrupt = false;
+        this.properties = new ArrayList<>();
+    }
+
+    public String toString() {
+        return "------------" + "\nColor: " + color + "\nNombre: " + name + "\nBalance: " + balance
+                + "\nEn bancarrota: " + bankrupt
+                + "\nPropiedades: " + properties + "\n------------";
     }
 
     public int getBalance() {
@@ -40,20 +50,23 @@ public class Player {
         // Vender activos)
     }
 
-    public Property getProperties() {
-        for (int i = 0; i < properties.length; i++) {
-            System.out.println(properties[i]);
+    public List<Property> getProperties() {
+        for (Property property : properties) {
+            System.out.println(property);
         }
 
         return properties;
     }
 
-    public void transferProperties() {
+    public List<Property> transferProperties() {
         // Transferir propiedades
+        List<Property> transferredProperties = new ArrayList<>(properties);
+        properties.clear();
+        return transferredProperties;
     }
 
-    public void setProperty() {
-        // Establecer propiedad
+    public void setProperties(List<Property> newProperties) {
+        this.properties = newProperties;
     }
 
     public boolean thereAreThingsToSell() {

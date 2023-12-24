@@ -1,10 +1,8 @@
-public class Terminal {
-    public String read() {
-        
-    }
+public abstract class Terminal {
+    public abstract int read();
 
-    public void show(String message) {
-        System.out.println(message);
-    }
+    public abstract String readString();
+
+    public abstract void show(String message);
 
 }

@@ -1,5 +1,3 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -35,7 +33,6 @@ public class GameManager {
                 System.out.println("Saliendo del juego...");
                 System.exit(0);
                 break;
-
         }
 
         scanner.close();

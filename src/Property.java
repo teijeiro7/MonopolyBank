@@ -1,4 +1,4 @@
-public abstract class Property {
+public abstract class Property extends MonopolyCode{
     private int price;
     private boolean mortgage;
     private int mortgageValue;
