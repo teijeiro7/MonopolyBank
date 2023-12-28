@@ -29,6 +29,10 @@ public class Player {
         return balance; // Placeholder
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void pay(int amount, boolean mandatory) {
         // Realizar un pago
     }
@@ -47,39 +51,36 @@ public class Player {
     }
 
     public void sellActives(boolean target, boolean mandatory) {
-        // Vender activos)
+
     }
 
     public List<Property> getProperties() {
         for (Property property : properties) {
             System.out.println(property);
         }
-
         return properties;
     }
 
     public List<Property> transferProperties() {
-        // Transferir propiedades
         List<Property> transferredProperties = new ArrayList<>(properties);
         properties.clear();
         return transferredProperties;
     }
 
-    public void setProperties(List<Property> newProperties) {
-        this.properties = newProperties;
+    public void setProperties(ArrayList<Property> properties) {
+        this.properties = properties;
     }
 
     public boolean thereAreThingsToSell() {
-        // Comprobar si hay cosas que vender
-        return false; // Placeholder
+        return false;
     }
 
     public boolean getBankrupt() {
-        return bankrupt; // Placeholder
+        return bankrupt;
     }
 
     public void showResume() {
-        // Mostrar resumen
+
     }
 
 }

@@ -7,8 +7,8 @@ public class PaymentCharge extends MonopolyCode {
         // Operación de cobro
     }
 
-    public PaymentCharge(String segment[], Terminal terminal) {
-        super(Integer.parseInt(segment[0]), segment[2], terminal);
+    public PaymentCharge(String partes[], Terminal terminal) {
+        super(Integer.parseInt(partes[0]), partes[2], terminal);
 
         Pattern pattern = Pattern.compile("(-?\\d+)(€)");
         Matcher matcher = pattern.matcher(segment[2]);
@@ -21,7 +21,6 @@ public class PaymentCharge extends MonopolyCode {
     }
 
     private String showSummary(Player player, int amount) {
-        return "El jugador " + player.name + " ha pagado " + amount + "€";
+        return "El jugador " + player.getName() + " ha pagado " + amount + "€";
     }
-
 }

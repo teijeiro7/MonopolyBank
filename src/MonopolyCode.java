@@ -1,10 +1,12 @@
 public class MonopolyCode {
     private String description;
     private int id;
+    private Terminal terminal;
 
     public MonopolyCode(String description, int id, Terminal terminal) {
         this.description = description;
         this.id = id;
+        this.terminal = terminal;
     }
 
     public String toString() {

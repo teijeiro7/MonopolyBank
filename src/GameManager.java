@@ -15,14 +15,15 @@ public class GameManager {
         System.out.print("Elija la opción que desea: ");
         int opcion = scanner.nextInt();
 
+        Game game = new Game();
         switch (opcion) {
             case 1:
                 try {
-                    Game.loadMonopolyCodes();
+                    game.loadMonopolyCodes();
                 } catch (IOException e) {
                     System.out.println("Error al cargar los códigos del Monopoly: " + e.getMessage());
                 }
-                Game.createPlayers();
+                game.createPlayers();
                 break;
 
             case 2:
@@ -47,8 +48,9 @@ public class GameManager {
         if (opcion.equals("S") || opcion.equals("s")) {
             System.out.println("Cargando partida...");
 
+            Game game = new Game(); // Create an instance of the Game class
             try {
-                Game.loadMonopolyCodes();
+                game.loadMonopolyCodes(); // Call the loadMonopolyCodes() method on the instance
             } catch (IOException e) {
                 System.out.println("Error al cargar los códigos del Monopoly: " + e.getMessage());
             }
