@@ -72,7 +72,11 @@ public class Player {
     }
 
     public boolean thereAreThingsToSell() {
-        return false;
+        if (properties.size() > 0) {
+                        
+        } else{
+            Game.removePlayer(this);
+        }   
     }
 
     public boolean getBankrupt() {
@@ -81,6 +85,10 @@ public class Player {
 
     public void showResume() {
 
+    }
+
+    public void getPlayer(int id){
+        
     }
 
 }

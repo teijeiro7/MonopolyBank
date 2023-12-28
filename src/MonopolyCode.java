@@ -1,4 +1,4 @@
-public class MonopolyCode {
+public abstract class MonopolyCode {
     private String description;
     private int id;
     private Terminal terminal;
@@ -19,8 +19,6 @@ public class MonopolyCode {
         return id;
     }
 
-    public void doOperation() {
-
-    }
+    public abstract void doOperation();
 
 }

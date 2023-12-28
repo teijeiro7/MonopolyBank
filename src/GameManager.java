@@ -48,9 +48,9 @@ public class GameManager {
         if (opcion.equals("S") || opcion.equals("s")) {
             System.out.println("Cargando partida...");
 
-            Game game = new Game(); // Create an instance of the Game class
+            Game game = new Game(); 
             try {
-                game.loadMonopolyCodes(); // Call the loadMonopolyCodes() method on the instance
+                game.loadMonopolyCodes(); 
             } catch (IOException e) {
                 System.out.println("Error al cargar los códigos del Monopoly: " + e.getMessage());
             }
