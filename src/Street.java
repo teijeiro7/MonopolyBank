@@ -14,7 +14,7 @@ public class Street extends Property{
     public void getPaymentForRent(){
 
 
-        showPurchaseSummary(builtHouses, null)
+        showPurchaseSummary(builtHouses, null);
     }
 
     private String showPurchaseSummary (int amount, Player player){
