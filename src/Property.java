@@ -1,14 +1,23 @@
-public abstract class Property extends MonopolyCode{
+public abstract class Property extends MonopolyCode {
     private int price;
     private boolean mortgage;
     private int mortgageValue;
     private Player owner;
+    private Player player;
 
-    public Property(int price, boolean mortgage, int mortgageValue) {
-        super(partes[1], Integer.parseInt(partes[0]));
+    public Property(String description, int id, Terminal terminal, int price, boolean mortgage, int mortgageValue) {
+        super(description, id, terminal);
         this.price = price;
         this.mortgage = mortgage;
         this.mortgageValue = mortgageValue;
+    }
+
+    public void doOperation() {
+
+    }
+
+    public int getPrice() {
+        return price;
     }
 
     public abstract void getPaymentForRent();

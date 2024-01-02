@@ -34,7 +34,27 @@ public class Player {
     }
 
     public void pay(int amount, boolean mandatory) {
-        // Realizar un pago
+        if (mandatory) {
+            this.balance -= amount;
+            if (this.balance < amount) {
+                terminal.show("No tienes suficiente dinero para pagar, por tanto, tienes que vender propiedades");
+                boolean bProperties = thereAreThingsToSell();
+                if (bProperties) {
+                    sellActives(false, amount, mandatory);
+                } else {
+                    terminal.show("No tienes propiedades para vender");
+                    setBankrupt(bankrupt, amount);
+                }
+
+            }
+        } else {
+            if (this.balance >= amount) {
+                this.balance -= amount;
+            } else {
+                terminal.show("No tienes suficiente dinero para pagar");
+                terminal.show("¿Deseas vender alguna propiedad para poder pagar la siguiente?");
+            }
+        }
     }
 
     public void setBankrupt(boolean bankrupt, int balance) {
@@ -43,21 +63,31 @@ public class Player {
         }
 
         if (bankrupt) {
-            this.color = null;
-            this.name = null;
-            this.balance = 0;
-            this.properties = null;
+            Game.removePlayer(this);
         }
     }
 
-    public void sellActives(boolean target, boolean mandatory) {
-
+    public void sellActives(boolean target, int targetAmount, boolean mandatory) {
+        if (!target) {
+            while (this.balance < targetAmount) {
+                terminal.show("Tus propiedades son: ");
+                for (Property property : getProperties()) {
+                    terminal.show(property.toString());
+                }
+                terminal.show("¿Qué propiedad quieres vender?");
+                int propertyIndex = terminal.read() - 1;
+                if (propertyIndex >= 0 && propertyIndex < properties.size()) {
+                    Property propertyToSell = properties.remove(propertyIndex);
+                    this.balance += propertyToSell.getPrice();
+                    terminal.show("Has vendido " + propertyToSell.toString());
+                } else {
+                    terminal.show("Ese índice no es válido, inténtalo de nuevo");
+                }
+            }
+        }
     }
 
     public List<Property> getProperties() {
-        for (Property property : properties) {
-            System.out.println(property);
-        }
         return properties;
     }
 
@@ -73,10 +103,10 @@ public class Player {
 
     public boolean thereAreThingsToSell() {
         if (properties.size() > 0) {
-                        
-        } else{
+
+        } else {
             Game.removePlayer(this);
-        }   
+        }
     }
 
     public boolean getBankrupt() {
@@ -87,8 +117,8 @@ public class Player {
 
     }
 
-    public void getPlayer(int id){
-        
+    public void getPlayer(int id) {
+
     }
 
 }

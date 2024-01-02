@@ -2,6 +2,7 @@ public abstract class MonopolyCode {
     private String description;
     private int id;
     private Terminal terminal;
+    private Player player;
 
     public MonopolyCode(String description, int id, Terminal terminal) {
         this.description = description;
@@ -19,6 +20,6 @@ public abstract class MonopolyCode {
         return id;
     }
 
-    public abstract void doOperation();
+    public abstract void doOperation(Player player);
 
 }
