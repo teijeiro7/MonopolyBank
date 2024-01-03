@@ -1,3 +1,5 @@
+package src;
+
 public abstract class MonopolyCode {
     private String description;
     private int id;

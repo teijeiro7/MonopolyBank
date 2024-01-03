@@ -1,7 +1,14 @@
+package src;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class GameManager {
+    private Terminal terminal;
+
     public void start() {
 
         Scanner scanner = new Scanner(System.in);
@@ -23,7 +30,6 @@ public class GameManager {
                 } catch (IOException e) {
                     System.out.println("Error al cargar los códigos del Monopoly: " + e.getMessage());
                 }
-                game.createPlayers();
                 break;
 
             case 2:
@@ -45,18 +51,24 @@ public class GameManager {
         Scanner scanner = new Scanner(System.in);
         String opcion = scanner.nextLine();
 
-        if (opcion.equals("S") || opcion.equals("s")) {
-            System.out.println("Cargando partida...");
+        if (opcion.equalsIgnoreCase("S")) {
+            File folder = new File("config/oldGames");
+            String[] listOfFiles = folder.list();
 
-            Game game = new Game(); 
-            try {
-                game.loadMonopolyCodes(); 
-            } catch (IOException e) {
-                System.out.println("Error al cargar los códigos del Monopoly: " + e.getMessage());
+            if (listOfFiles.length == 0) {
+                terminal.show("No hay partidas guardadas");
+                start();
             }
-        } else {
-            System.out.println("Volviendo al menú principal...");
-            start();
+
+            terminal.show("A continuación se mostrarán las partidas guardadas:");
+
+            for (int i = 0; i < listOfFiles.length; i++) {
+                terminal.show((i + 1) + ": " + listOfFiles[i]);
+            }
+
+            terminal.show("Introduzca el número de la partida que desea cargar: ");
+            int numPartida = terminal.read();
+
         }
 
         scanner.close();

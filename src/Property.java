@@ -1,4 +1,6 @@
-public abstract class Property extends MonopolyCode {
+package src;
+
+public class Property extends MonopolyCode {
     private int price;
     private boolean mortgage;
     private int mortgageValue;
@@ -13,14 +15,14 @@ public abstract class Property extends MonopolyCode {
     }
 
     public void doOperation() {
-
     }
 
     public int getPrice() {
         return price;
     }
 
-    public abstract void getPaymentForRent();
+    public void getPaymentForRent() {
+    };
 
     public void getOwner() {
         // Placeholder

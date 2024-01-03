@@ -1,3 +1,5 @@
+package src;
+
 public class Street extends Property {
 
     private int builtHouses = 0;

@@ -1,14 +1,15 @@
+package src;
+
 import java.util.regex.*;
 
 public class PaymentCharge extends MonopolyCode {
     private int amount;
 
-    public void doOperation(Player p) { 
+    public void doOperation(Player p) {
         int pBalance = p.getBalance();
-        pBalance += amount; 
+        pBalance += amount;
         showSummary(p, amount);
     }
-
 
     public PaymentCharge(String partes[], Terminal terminal) {
         // Llama al constructor de la clase padre con ciertos parámetros

@@ -1,7 +1,8 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Serializable;
+package src;
+
+import java.beans.XMLEncoder;
+import java.io.*;
+import utils.Constants;
 
 public class Game implements Serializable {
     private MonopolyCode[] monopolyCodeArray;
@@ -18,19 +19,24 @@ public class Game implements Serializable {
         terminal.show("Introduzca el id de la carta que ha tocado:");
         int idCard = terminal.read();
 
-        terminal.show("¿De quién es el turno? (1-RED, 2-GREEN, 3-BLUE, 4-BLACK) \n");
+        terminal.show("¿De quién es el turno? (1-RED, 2-GREEN, 3-BLUE, 4-BLACK) ");
         int playerTurn = terminal.read();
         Player player = players[playerTurn - 1];
 
-        monopolyCodeArray[idCard].doOperation(player); // llamamos al doOperation de la carta que ha tocado en el turno
-                                                       // del jugador
+        monopolyCodeArray[idCard].doOperation(player);
 
         terminal.show("Es el turno de " + player.getName());
+        terminal.closeScanner();
     }
 
     public void createPlayers() {
-        System.out.print("Introduzca el número de jugadores: ");
+        System.out.print("Introduzca el número de jugadores que van a jugar la partida: ");
         int numPlayers = terminal.read();
+
+        if (numPlayers < 2 || numPlayers > 4) {
+            terminal.show("El número de jugadores debe ser entre 2 y 4");
+            createPlayers();
+        }
 
         players = new Player[numPlayers];
 
@@ -72,7 +78,7 @@ public class Game implements Serializable {
         } catch (IOException e) {
             throw new IOException("Error al leer el archivo " + archivo, e);
         }
-        createPlayers();
+        setGameName();
     }
 
     public static void removePlayer(Player player) {
@@ -88,6 +94,12 @@ public class Game implements Serializable {
 
     public void setMonopolyCode(int id, MonopolyCode monopolyCode) {
         monopolyCodeArray[id] = monopolyCode;
+    }
+
+    public String setGameName() {
+        terminal.show("Introduzca el nombre de la partida");
+        String gameName = terminal.readString();
+        return gameName;
     }
 
 }

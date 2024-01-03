@@ -1,17 +1,19 @@
+package src;
+
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Translator implements Serializable{
+public class Translator implements Serializable {
 
     // attributes
-    
+
     private Map<String, String> dictionary = new HashMap<>();
     private String language;
 
-    //constructors
+    // constructors
     public Translator() {
-        
+
     }
 
     public Translator(String language) {
@@ -32,16 +34,15 @@ public class Translator implements Serializable{
         }
     }
 
-
-    
-    //methods
-    public String translate (String input) {
-        if(!dictionary.containsKey(input)){
+    // methods
+    public String translate(String input) {
+        if (!dictionary.containsKey(input)) {
             return input;
         }
         return dictionary.get(input);
     }
-    public String getLanguage(){
+
+    public String getLanguage() {
         return language;
     }
 }

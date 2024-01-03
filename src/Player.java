@@ -1,3 +1,5 @@
+package src;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +15,7 @@ public class Player {
         this.color = Color.values()[id];
         System.out.print("Introduzca el nombre del jugador " + (id + 1) + ": ");
         String name = terminal.readString();
+        terminal.closeScanner();
         this.name = name;
         this.balance = 1500;
         this.bankrupt = false;
@@ -77,9 +80,17 @@ public class Player {
                 terminal.show("¿Qué propiedad quieres vender?");
                 int propertyIndex = terminal.read() - 1;
                 if (propertyIndex >= 0 && propertyIndex < properties.size()) {
-                    Property propertyToSell = properties.remove(propertyIndex);
-                    this.balance += propertyToSell.getPrice();
-                    terminal.show("Has vendido " + propertyToSell.toString());
+                    Property propertyToSell = properties.get(propertyIndex);
+                    terminal.show("Estás a punto de vender " + propertyToSell.toString() + " por "
+                            + propertyToSell.getPrice() / 2 + ". ¿Quieres continuar? (s/n)");
+                    String confirmation = terminal.readString();
+                    if (confirmation.equalsIgnoreCase("s")) {
+                        properties.remove(propertyIndex);
+                        this.balance += propertyToSell.getPrice();
+                        terminal.show("Has vendido " + propertyToSell.toString());
+                    } else {
+                        terminal.show("Venta cancelada.");
+                    }
                 } else {
                     terminal.show("Ese índice no es válido, inténtalo de nuevo");
                 }
@@ -103,9 +114,9 @@ public class Player {
 
     public boolean thereAreThingsToSell() {
         if (properties.size() > 0) {
-
+            return true;
         } else {
-            Game.removePlayer(this);
+            return false;
         }
     }
 
