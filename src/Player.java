@@ -13,9 +13,8 @@ public class Player {
 
     public Player(int id, Terminal terminal) {
         this.color = Color.values()[id];
-        System.out.print("Introduzca el nombre del jugador " + (id + 1) + ": ");
+        System.out.print("Enter the name of player " + (id + 1) + ": ");
         String name = terminal.readString();
-        terminal.closeScanner();
         this.name = name;
         this.balance = 1500;
         this.bankrupt = false;
@@ -23,9 +22,9 @@ public class Player {
     }
 
     public String toString() {
-        return "------------" + "\nColor: " + color + "\nNombre: " + name + "\nBalance: " + balance
-                + "\nEn bancarrota: " + bankrupt
-                + "\nPropiedades: " + properties + "\n------------";
+        return "------------" + "\nColor: " + color + "\nName: " + name + "\nBalance: " + balance
+                + "\nBankrupt: " + bankrupt
+                + "\nProperties: " + properties + "\n------------";
     }
 
     public int getBalance() {
@@ -40,22 +39,21 @@ public class Player {
         if (mandatory) {
             this.balance -= amount;
             if (this.balance < amount) {
-                terminal.show("No tienes suficiente dinero para pagar, por tanto, tienes que vender propiedades");
+                terminal.show("You don't have enough money to pay, therefore, you have to sell properties");
                 boolean bProperties = thereAreThingsToSell();
                 if (bProperties) {
                     sellActives(false, amount, mandatory);
                 } else {
-                    terminal.show("No tienes propiedades para vender");
+                    terminal.show("You don't have properties to sell");
                     setBankrupt(bankrupt, amount);
                 }
-
             }
         } else {
             if (this.balance >= amount) {
                 this.balance -= amount;
             } else {
-                terminal.show("No tienes suficiente dinero para pagar");
-                terminal.show("¿Deseas vender alguna propiedad para poder pagar la siguiente?");
+                terminal.show("You don't have enough money to pay");
+                terminal.show("Do you want to sell any property to be able to pay the next one?");
             }
         }
     }
@@ -73,26 +71,26 @@ public class Player {
     public void sellActives(boolean target, int targetAmount, boolean mandatory) {
         if (!target) {
             while (this.balance < targetAmount) {
-                terminal.show("Tus propiedades son: ");
+                terminal.show("Your properties are: ");
                 for (Property property : getProperties()) {
                     terminal.show(property.toString());
                 }
-                terminal.show("¿Qué propiedad quieres vender?");
+                terminal.show("Which property do you want to sell?");
                 int propertyIndex = terminal.read() - 1;
                 if (propertyIndex >= 0 && propertyIndex < properties.size()) {
                     Property propertyToSell = properties.get(propertyIndex);
-                    terminal.show("Estás a punto de vender " + propertyToSell.toString() + " por "
-                            + propertyToSell.getPrice() / 2 + ". ¿Quieres continuar? (s/n)");
+                    terminal.show("You are about to sell " + propertyToSell.toString() + " for "
+                            + propertyToSell.getPrice() / 2 + ". Do you want to proceed? (y/n)");
                     String confirmation = terminal.readString();
-                    if (confirmation.equalsIgnoreCase("s")) {
+                    if (confirmation.equalsIgnoreCase("y")) {
                         properties.remove(propertyIndex);
                         this.balance += propertyToSell.getPrice();
-                        terminal.show("Has vendido " + propertyToSell.toString());
+                        terminal.show("You have sold " + propertyToSell.toString());
                     } else {
-                        terminal.show("Venta cancelada.");
+                        terminal.show("Sale canceled.");
                     }
                 } else {
-                    terminal.show("Ese índice no es válido, inténtalo de nuevo");
+                    terminal.show("That index is not valid, try again");
                 }
             }
         }
@@ -113,11 +111,7 @@ public class Player {
     }
 
     public boolean thereAreThingsToSell() {
-        if (properties.size() > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return properties.size() > 0;
     }
 
     public boolean getBankrupt() {
@@ -125,11 +119,14 @@ public class Player {
     }
 
     public void showResume() {
-
+        // Placeholder
     }
 
     public void getPlayer(int id) {
-
+        // Placeholder
     }
 
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
 }

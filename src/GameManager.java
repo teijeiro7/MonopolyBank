@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class GameManager {
     private Terminal terminal;
-    private Game game;
+    private Game game = new Game();
 
     public void start() {
 

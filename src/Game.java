@@ -34,10 +34,10 @@ public class Game implements Serializable {
         terminal.show("Whose turn is it? (1-RED, 2-GREEN, 3-BLUE, 4-BLACK) ");
         int playerTurn = terminal.read();
         Player player = players[playerTurn - 1];
+        terminal.show("It's " + player.getName() + "'s turn");
 
         monopolyCodeArray[idCard].doOperation(player);
 
-        terminal.show("It's " + player.getName() + "'s turn");
         terminal.closeScanner();
     }
 
@@ -58,8 +58,6 @@ public class Game implements Serializable {
         }
 
         terminal.closeScanner();
-
-        play();
     }
 
     public void loadMonopolyCodes() throws IOException {
@@ -121,10 +119,29 @@ public class Game implements Serializable {
                             new FileOutputStream(filePath)));
             encoder.writeObject(this);
             encoder.close();
-            terminal.show("Juego guardado exitosamente en: " + filePath);
+            terminal.show("Game saved successfully at: " + filePath);
         } catch (FileNotFoundException fileNotFound) {
-            terminal.show("ERROR: No se pudo guardar el juego");
+            terminal.show("ERROR: Could not save the game");
         }
     }
 
+    public void askForLanguage() {
+        terminal.show("In which language do you want to play?");
+
+        File languagesFolder = new File("config/languages");
+        String[] listOfLanguages = languagesFolder.list();
+
+        if (listOfLanguages.length == 0) {
+            terminal.show("No languages available");
+        }
+
+        for (int i = 0; i < listOfLanguages.length; i++) {
+            terminal.show((i + 1) + ": " + listOfLanguages[i]);
+        }
+
+        terminal.show("Enter the number of the language you want to play with: ");
+        int languageNumber = terminal.read();
+
+        terminal.show("You are going to play with " + listOfLanguages[languageNumber]);
+    }
 }
