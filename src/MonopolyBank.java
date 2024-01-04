@@ -11,10 +11,10 @@ public class MonopolyBank {
      */
     public static void main(String[] args) {
 
-        // El fichero con los codigos se encuentra en "config/MonopolyCode.txt"
-        // Los idiomas deben estar en la carpeta "config/languages/"
-        // Las partidas antiguas deberán estar en la carpeta "config/oldGames/"
-        System.out.println("BIENVENIDO AL MONOPOLY");
+        // The file with the codes is located at "config/MonopolyCode.txt"
+        // Languages should be in the "config/languages/" folder
+        // Old games should be in the "config/oldGames/" folder
+        System.out.println("WELCOME TO MONOPOLY");
         GameManager gameManager = new GameManager();
         gameManager.start();
     }

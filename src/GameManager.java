@@ -1,45 +1,48 @@
 package src;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.Scanner;
 
 public class GameManager {
     private Terminal terminal;
+    private Game game;
 
     public void start() {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Menú principal");
+        System.out.println("Main Menu");
         System.out.println("----------------");
-        System.out.println("1: Nueva partida");
-        System.out.println("2: Cargar partida");
-        System.out.println("3: Salir");
+        System.out.println("1: New Game");
+        System.out.println("2: Load Game");
+        System.out.println("3: Exit");
         System.out.println("----------------");
-        System.out.print("Elija la opción que desea: ");
-        int opcion = scanner.nextInt();
+        System.out.print("Choose the option you want: ");
+        int option = scanner.nextInt();
 
-        Game game = new Game();
-        switch (opcion) {
-            case 1:
+        if (option >= 1 && option <= 3) {
+            if (option == 1 || option == 2) {
                 try {
                     game.loadMonopolyCodes();
                 } catch (IOException e) {
-                    System.out.println("Error al cargar los códigos del Monopoly: " + e.getMessage());
+                    e.printStackTrace();
                 }
-                break;
+            }
 
-            case 2:
+            if (option == 1) {
+                game.newGame();
+            } else if (option == 2) {
                 askForResumeGame();
-                break;
-
-            case 3:
-                System.out.println("Saliendo del juego...");
-                System.exit(0);
-                break;
+            } else {
+                leaveGame();
+            }
+        } else {
+            terminal.show("The entered number does not correspond to any of the options.");
+            terminal.show("Please enter a number between 1 and 3 again");
+            start();
         }
 
         scanner.close();
@@ -47,31 +50,46 @@ public class GameManager {
     }
 
     public void askForResumeGame() {
-        System.out.print("¿Desea cargar una partida guardada? (S/N): ");
+        System.out.print("Do you want to load a saved game? (Y/N): ");
         Scanner scanner = new Scanner(System.in);
-        String opcion = scanner.nextLine();
+        String option = scanner.nextLine();
 
-        if (opcion.equalsIgnoreCase("S")) {
+        if (option.toUpperCase().equalsIgnoreCase("Y")) {
             File folder = new File("config/oldGames");
             String[] listOfFiles = folder.list();
 
             if (listOfFiles.length == 0) {
-                terminal.show("No hay partidas guardadas");
+                terminal.show("No saved games available");
                 start();
             }
 
-            terminal.show("A continuación se mostrarán las partidas guardadas:");
+            terminal.show("The following saved games will be displayed:");
 
             for (int i = 0; i < listOfFiles.length; i++) {
                 terminal.show((i + 1) + ": " + listOfFiles[i]);
             }
 
-            terminal.show("Introduzca el número de la partida que desea cargar: ");
-            int numPartida = terminal.read();
+            terminal.show("Enter the number of the game you want to load: ");
+            int gameNumber = terminal.read();
+
+            try {
+                String file = listOfFiles[gameNumber];
+                ObjectInputStream data = new ObjectInputStream(new FileInputStream(file));
+                Game loadedGame = (Game) data.readObject();
+                game.loadDataGame(loadedGame);
+            } catch (Exception e) {
+                String errorMessage = e.toString();
+                terminal.show(errorMessage);
+            }
 
         }
 
         scanner.close();
+    }
+
+    public void leaveGame() {
+        terminal.show("Leaving the game...");
+        System.exit(0);
     }
 
 }

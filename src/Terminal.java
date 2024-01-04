@@ -12,17 +12,23 @@ public abstract class Terminal {
         this.defaultMessage = defaultMessage;
     }
 
+    public void cleanScreen() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.print("\033\143");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public abstract int read();
 
     public abstract String readString();
 
-    public void show(String message) {
-        if (defaultMessage != null) {
-            System.out.println(defaultMessage + ": " + message);
-        } else {
-            System.out.println(message);
-        }
-    }
+    public abstract void show(String message);
 
     public abstract void closeScanner();
 }
