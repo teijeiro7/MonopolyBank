@@ -20,14 +20,14 @@ public class Game implements Serializable {
         askForLanguage();
         String gameName = setGameName();
         saveGame(gameName);
-        play();
+        play(gameName);
     }
 
     public void loadDataGame(Game game) {
 
     }
 
-    public void play() {
+    public void play(String gameName) {
         terminal.show("Enter the ID of the card that has been drawn:");
         int idCard = terminal.read();
 
@@ -39,6 +39,7 @@ public class Game implements Serializable {
         monopolyCodeArray[idCard].doOperation(player);
 
         terminal.closeScanner();
+        saveGame(gameName);
     }
 
     public void createPlayers() {
@@ -144,4 +145,5 @@ public class Game implements Serializable {
 
         terminal.show("You are going to play with " + listOfLanguages[languageNumber]);
     }
+
 }
