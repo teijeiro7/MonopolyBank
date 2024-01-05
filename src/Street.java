@@ -8,7 +8,7 @@ public class Street extends Property {
     private int[] costStayingWithHouses;
 
     public Street(String[] partes, Terminal terminal) {
-        super(partes[1], Integer.parseInt(partes[0]), terminal, Integer.parseInt(partes[3]), false,
+        super(partes[2], Integer.parseInt(partes[0]), terminal, Integer.parseInt(partes[3]), false,
                 Integer.parseInt(partes[11]));
         this.builtHouses = 0;
         this.builtHotels = 0;

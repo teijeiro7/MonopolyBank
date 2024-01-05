@@ -32,8 +32,12 @@ public abstract class Property extends MonopolyCode {
         return player;
     }
 
-    public void setOwner() {
-        // Placeholder
+    public void setOwner(Player owner) {
+        this.owner = owner;
+    }
+
+    public void setMortgaged(boolean mortgage) {
+        this.mortgage = true;
     }
 
     public void doOwnerOperation() {

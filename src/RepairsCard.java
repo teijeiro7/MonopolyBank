@@ -9,7 +9,7 @@ public class RepairsCard extends MonopolyCode {
     private Terminal terminal;
 
     public RepairsCard(String[] parts, Terminal terminal) {
-        super(parts[1], Integer.parseInt(parts[0]), terminal);
+        super(parts[2], Integer.parseInt(parts[0]), terminal);
 
         Pattern pattern = Pattern.compile("(\\d+)(€)");
         Matcher matcher = pattern.matcher(parts[2]);
@@ -20,7 +20,9 @@ public class RepairsCard extends MonopolyCode {
         }
     }
 
-    public void doOperation(Player p, String parts[]) {
+    public void doOperation(Player p) {
+        int totalPrice;
+
         List<Property> properties = p.getProperties();
         int pBalance = p.getBalance();
 
@@ -30,7 +32,7 @@ public class RepairsCard extends MonopolyCode {
                 int numHouses = street.getBuiltHouses();
                 int numHotels = street.getBuiltHotels();
 
-                int totalPrice = numHouses * amountForHouse + numHotels * amountForHotel;
+                totalPrice = numHouses * amountForHouse + numHotels * amountForHotel;
                 pBalance -= totalPrice;
 
             }

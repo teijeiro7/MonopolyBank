@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.Scanner;
 
+import utils.Constants;
+
 public class GameManager {
     private Terminal terminal;
     private Game game = new Game();
@@ -14,35 +16,69 @@ public class GameManager {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Main Menu");
-        System.out.println("----------------");
-        System.out.println("1: New Game");
-        System.out.println("2: Load Game");
-        System.out.println("3: Exit");
-        System.out.println("----------------");
-        System.out.print("Choose the option you want: ");
-        int option = scanner.nextInt();
+        for (int i = 1; i < Constants.menuInterface.length; i++) {
+            System.out.println(Constants.menuInterface[i]);
+        }
 
-        if (option >= 1 && option <= 3) {
-            if (option == 1 || option == 2) {
-                try {
-                    game.loadMonopolyCodes();
-                } catch (IOException e) {
-                    e.printStackTrace();
+        /*
+         * System.out.print(Constants.chooseOption);
+         * int option = scanner.nextInt();
+         * 
+         * if (option >= 1 && option <= 3) {
+         * if (option == 1 || option == 2) {
+         * try {
+         * game.loadMonopolyCodes();
+         * } catch (IOException e) {
+         * e.printStackTrace();
+         * }
+         * }
+         * 
+         * if (option == 1) {
+         * game.newGame();
+         * } else if (option == 2) {
+         * askForResumeGame();
+         * } else {
+         * leaveGame();
+         * }
+         * } else {
+         * terminal.show("The entered number does not correspond to any of the options."
+         * );
+         * terminal.show("Please enter a number between 1 and 3 again");
+         * start();
+         * }
+         */
+
+        int option = 0;
+
+        while (option < 1 || option > 3) {
+            option = 0;
+            System.out.print(Constants.chooseOption);
+            if (scanner.hasNextInt()) {
+                option = scanner.nextInt();
+                if (option >= 1 && option <= 3) {
+                    if (option == 1 || option == 2) {
+                        try {
+                            game.loadMonopolyCodes();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    if (option == 1) {
+                        game.newGame();
+                    } else if (option == 2) {
+                        askForResumeGame();
+                    } else {
+                        leaveGame();
+                    }
+                } else {
+                    System.out.println("The entered number does not correspond to any of the options.");
+                    System.out.println("Please enter a number between 1 and 3 again");
                 }
-            }
-
-            if (option == 1) {
-                game.newGame();
-            } else if (option == 2) {
-                askForResumeGame();
             } else {
-                leaveGame();
+                System.out.println("Please enter a valid number.");
+                scanner.next(); // consume the invalid input
             }
-        } else {
-            terminal.show("The entered number does not correspond to any of the options.");
-            terminal.show("Please enter a number between 1 and 3 again");
-            start();
         }
 
         scanner.close();
@@ -88,7 +124,7 @@ public class GameManager {
     }
 
     public void leaveGame() {
-        terminal.show("Leaving the game...");
+        System.out.println("Leaving the game...");
         System.exit(0);
     }
 

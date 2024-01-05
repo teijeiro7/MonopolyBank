@@ -100,10 +100,18 @@ public class Player {
         return properties;
     }
 
-    public List<Property> transferProperties() {
-        List<Property> transferredProperties = new ArrayList<>(properties);
-        properties.clear();
-        return transferredProperties;
+    public void traspaseProperties(Player newOwner) {
+        for (Property property : properties) { // traspasamos las propiedades y las deshipotecamos para el banco
+            property.setOwner(newOwner);
+            if (newOwner == null) {
+                property.setMortgaged(false);
+            }
+            if (property instanceof Street) { // por si acaso quitamos las casas
+                Street street = (Street) property;
+                street.setBuiltHouses(0);
+            }
+        }
+        newOwner.getProperties().addAll(properties);
     }
 
     public void setProperties(ArrayList<Property> properties) {

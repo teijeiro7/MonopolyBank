@@ -28,10 +28,10 @@ public class Game implements Serializable {
     }
 
     public void play(String gameName) {
-        terminal.show("Enter the ID of the card that has been drawn:");
+        terminal.show(Constants.enterID);
         int idCard = terminal.read();
 
-        terminal.show("Whose turn is it? (1-RED, 2-GREEN, 3-BLUE, 4-BLACK) ");
+        terminal.show(Constants.whoseTurn);
         int playerTurn = terminal.read();
         Player player = players[playerTurn - 1];
         terminal.show("It's " + player.getName() + "'s turn");
@@ -43,11 +43,11 @@ public class Game implements Serializable {
     }
 
     public void createPlayers() {
-        System.out.print("Enter the number of players for the game: ");
+        terminal.show(Constants.numberPlayers);
         int numPlayers = terminal.read();
 
         if (numPlayers < 2 || numPlayers > 4) {
-            terminal.show("The number of players must be between 2 and 4");
+            terminal.show(Constants.numberWarning);
             createPlayers();
         }
 
@@ -62,7 +62,7 @@ public class Game implements Serializable {
     }
 
     public void loadMonopolyCodes() throws IOException {
-        String file = "config/MonopolyCode.txt";
+        String file = Constants.monopolyCodeFile;
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
@@ -87,7 +87,7 @@ public class Game implements Serializable {
                 }
             }
         } catch (IOException e) {
-            throw new IOException("Error reading the file " + file, e);
+            throw new IOException(Constants.errorReadingFile + file, e);
         }
     }
 
@@ -107,43 +107,43 @@ public class Game implements Serializable {
     }
 
     public String setGameName() {
-        terminal.show("Enter the game name");
+        terminal.show(Constants.enterGameName);
         String gameName = terminal.readString();
         return gameName;
     }
 
     public void saveGame(String gameName) {
         try {
-            String filePath = "config/oldGames/" + gameName + ".xml";
+            String filePath = Constants.oldGamesPath + gameName + ".xml";
             XMLEncoder encoder = new XMLEncoder(
                     new BufferedOutputStream(
                             new FileOutputStream(filePath)));
             encoder.writeObject(this);
             encoder.close();
-            terminal.show("Game saved successfully at: " + filePath);
+            terminal.show(Constants.savedGame + filePath);
         } catch (FileNotFoundException fileNotFound) {
-            terminal.show("ERROR: Could not save the game");
+            terminal.show(Constants.errorSavedGame);
         }
     }
 
     public void askForLanguage() {
-        terminal.show("In which language do you want to play?");
+        terminal.show(Constants.selectLanguage);
 
-        File languagesFolder = new File("config/languages");
+        File languagesFolder = new File(Constants.languagesFolder);
         String[] listOfLanguages = languagesFolder.list();
 
         if (listOfLanguages.length == 0) {
-            terminal.show("No languages available");
+            terminal.show(Constants.noLanguages);
         }
 
         for (int i = 0; i < listOfLanguages.length; i++) {
             terminal.show((i + 1) + ": " + listOfLanguages[i]);
         }
 
-        terminal.show("Enter the number of the language you want to play with: ");
+        terminal.show(Constants.selectNumberLanguage);
         int languageNumber = terminal.read();
 
-        terminal.show("You are going to play with " + listOfLanguages[languageNumber]);
+        terminal.show(Constants.confirmationLanguage + listOfLanguages[languageNumber]);
     }
 
 }
