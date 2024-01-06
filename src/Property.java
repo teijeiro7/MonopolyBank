@@ -21,6 +21,10 @@ public abstract class Property extends MonopolyCode {
         return price;
     }
 
+    public int getMortgageValue() {
+        return mortgageValue;
+    }
+
     public void getPaymentForRent() {
     };
 
