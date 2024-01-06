@@ -20,34 +20,6 @@ public class GameManager {
             System.out.println(Constants.menuInterface[i]);
         }
 
-        /*
-         * System.out.print(Constants.chooseOption);
-         * int option = scanner.nextInt();
-         * 
-         * if (option >= 1 && option <= 3) {
-         * if (option == 1 || option == 2) {
-         * try {
-         * game.loadMonopolyCodes();
-         * } catch (IOException e) {
-         * e.printStackTrace();
-         * }
-         * }
-         * 
-         * if (option == 1) {
-         * game.newGame();
-         * } else if (option == 2) {
-         * askForResumeGame();
-         * } else {
-         * leaveGame();
-         * }
-         * } else {
-         * terminal.show("The entered number does not correspond to any of the options."
-         * );
-         * terminal.show("Please enter a number between 1 and 3 again");
-         * start();
-         * }
-         */
-
         int option = 0;
 
         while (option < 1 || option > 3) {

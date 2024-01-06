@@ -1,6 +1,6 @@
 package src;
 
-public abstract class MonopolyCode {
+public class MonopolyCode {
     private String description;
     private int id;
     private Terminal terminal;
@@ -22,6 +22,8 @@ public abstract class MonopolyCode {
         return id;
     }
 
-    public abstract void doOperation(Player player);
+    public void doOperation(Player player) {
+
+    };
 
 }
