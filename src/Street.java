@@ -21,6 +21,9 @@ public class Street extends Property {
         this.costStayingWithHouses = new int[5];
         this.streetName = partes[1];
         this.hotelPrice = Integer.parseInt(partes[10]);
+        for (int i = 0; i < 6; i++) {
+            this.costStayingWithHouses[i] = Integer.parseInt(partes[i + 3]);
+        }
     }
 
     public void getPaymentForRent() {

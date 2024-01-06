@@ -14,8 +14,12 @@ public abstract class Property extends MonopolyCode {
         this.mortgageValue = mortgageValue;
     }
 
-    public void doOperation(Player player) {
-    }
+    /*
+     * public String toString() {
+     * }
+     */
+
+    public abstract void doOperation(Player player);
 
     public int getPrice() {
         return price;

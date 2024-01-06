@@ -23,6 +23,7 @@ public class Player {
         this.properties = new ArrayList<>();
     }
 
+    @Override
     public String toString() {
         return "------------" + "\nColor: " + color + "\nName: " + name + "\nBalance: " + balance
                 + "\nBankrupt: " + bankrupt
