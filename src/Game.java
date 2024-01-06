@@ -8,6 +8,7 @@ public class Game implements Serializable {
     private MonopolyCode[] monopolyCodeArray;
     private Player[] players;
     private Terminal terminal;
+    private boolean finished;
 
     public Game() {
         this.terminal = new TextTerminal();
@@ -17,14 +18,40 @@ public class Game implements Serializable {
 
     public void newGame() {
         createPlayers();
-        askForLanguage();
         String gameName = setGameName();
+        askForLanguage();
         saveGame(gameName);
-        play(gameName);
+        gameMenu(gameName, false);
     }
 
     public void loadDataGame(Game game) {
 
+    }
+
+    public void gameMenu(String gameName, boolean finished) {
+        while (!finished) {
+            for (int i = 0; i < Constants.gameMenu.length; i++) {
+                terminal.show(Constants.gameMenu[i]);
+            }
+            int gameMenuOption = terminal.read();
+            while (gameMenuOption > 1 || gameMenuOption < 3) {
+                if (gameMenuOption == 1) {
+                    play(gameName);
+                } else if (gameMenuOption == 2) {
+                    showGameStatus();
+                } else {
+                    saveGame(gameName);
+                    terminal.show(Constants.leavingGame);
+                    System.exit(0);
+                }
+            }
+        }
+    };
+
+    public void showGameStatus() {
+        for (int i = 0; i < players.length; i++) {
+            terminal.show(players[i].toString());
+        }
     }
 
     public void play(String gameName) {
@@ -34,7 +61,7 @@ public class Game implements Serializable {
         terminal.show(Constants.whoseTurn);
         int playerTurn = terminal.read();
         Player player = players[playerTurn - 1];
-        terminal.show("It's " + player.getName() + "'s turn");
+        terminal.show(String.format(Constants.turnSummary, player.getName()));
 
         monopolyCodeArray[idCard].doOperation(player);
 
@@ -58,7 +85,6 @@ public class Game implements Serializable {
             terminal.show(players[i].toString());
         }
 
-        terminal.closeScanner();
     }
 
     public void loadMonopolyCodes() throws IOException {
@@ -114,13 +140,13 @@ public class Game implements Serializable {
 
     public void saveGame(String gameName) {
         try {
-            String filePath = Constants.oldGamesPath + gameName + ".xml";
+            String filePath = String.format(Constants.oldGamesPath, gameName);
             XMLEncoder encoder = new XMLEncoder(
                     new BufferedOutputStream(
                             new FileOutputStream(filePath)));
             encoder.writeObject(this);
             encoder.close();
-            terminal.show(Constants.savedGame + filePath);
+            terminal.show(Constants.savedGame + gameName);
         } catch (FileNotFoundException fileNotFound) {
             terminal.show(Constants.errorSavedGame);
         }
@@ -130,10 +156,17 @@ public class Game implements Serializable {
         terminal.show(Constants.selectLanguage);
 
         File languagesFolder = new File(Constants.languagesFolder);
+
+        if (!languagesFolder.exists() || !languagesFolder.isDirectory()) {
+            terminal.show("Languages folder does not exist or is not a directory");
+            return;
+        }
+
         String[] listOfLanguages = languagesFolder.list();
 
-        if (listOfLanguages.length == 0) {
+        if (listOfLanguages == null || listOfLanguages.length == 0) {
             terminal.show(Constants.noLanguages);
+            return;
         }
 
         for (int i = 0; i < listOfLanguages.length; i++) {

@@ -116,7 +116,7 @@ public class Player {
                 }
                 terminal.show(Constants.askForMoreProperties);
                 sellMore = terminal.readString();
-            } while (sellMore.equalsIgnoreCase("yes"));
+            } while (sellMore.equalsIgnoreCase("yes") || sellMore.equalsIgnoreCase("YES"));
         }
     }
 
