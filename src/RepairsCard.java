@@ -16,7 +16,7 @@ public class RepairsCard extends MonopolyCode {
 
         if (matcher.find()) {
             amountForHouse = Integer.parseInt(matcher.group(1));
-            amountForHotel = Integer.parseInt(matcher.group(2));
+            amountForHotel = Integer.parseInt(matcher.group(1));
         }
     }
 

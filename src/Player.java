@@ -3,6 +3,8 @@ package src;
 import java.util.ArrayList;
 import java.util.List;
 
+import utils.Constants;
+
 public class Player {
     private Color color;
     private String name;
@@ -37,23 +39,22 @@ public class Player {
 
     public void pay(int amount, boolean mandatory) {
         if (mandatory) {
-            this.balance -= amount;
-            if (this.balance < amount) {
-                terminal.show("You don't have enough money to pay, therefore, you have to sell properties");
-                boolean bProperties = thereAreThingsToSell();
-                if (bProperties) {
-                    sellActives(false, amount, mandatory);
-                } else {
-                    terminal.show("You don't have properties to sell");
-                    setBankrupt(bankrupt, amount);
-                }
+            if (balance >= amount) {
+                terminal.show(Constants.whatAreYouGoingToPay + amount + "€");
+                balance -= amount;
+            } else {
+                sellActives(amount, mandatory);
             }
         } else {
-            if (this.balance >= amount) {
-                this.balance -= amount;
-            } else {
-                terminal.show("You don't have enough money to pay");
-                terminal.show("Do you want to sell any property to be able to pay the next one?");
+            terminal.show("Do you want to make the payment of " + amount + "€? (yes/no)");
+            String response = terminal.readString();
+            if (response.equalsIgnoreCase("yes")) {
+                if (balance >= amount) {
+                    terminal.show(Constants.whatAreYouGoingToPay + amount + "€");
+                    balance -= amount;
+                } else {
+                    sellActives(amount, mandatory);
+                }
             }
         }
     }
@@ -68,31 +69,54 @@ public class Player {
         }
     }
 
-    public void sellActives(boolean target, int targetAmount, boolean mandatory) {
-        if (!target) {
+    public void sellActives(int targetAmount, boolean mandatory) {
+
+        if (mandatory) {
             while (this.balance < targetAmount) {
-                terminal.show("Your properties are: ");
+                terminal.show(Constants.showPropertiesToSell);
                 for (Property property : getProperties()) {
-                    terminal.show(property.toString());
+                    terminal.show(property.toString()); // por cada propiedad del jugador la muestra
                 }
-                terminal.show("Which property do you want to sell?");
-                int propertyIndex = terminal.read() - 1;
-                if (propertyIndex >= 0 && propertyIndex < properties.size()) {
+
+                terminal.show(Constants.askPropertyToSell);
+                int propertyIndex = terminal.read() - 1; // - 1 porque el array de propiedades empieza en 0
+
+                while (propertyIndex < 0 || propertyIndex >= getProperties().size()) {
                     Property propertyToSell = properties.get(propertyIndex);
-                    terminal.show("You are about to sell " + propertyToSell.toString() + " for "
-                            + propertyToSell.getPrice() / 2 + ". Do you want to proceed? (y/n)");
-                    String confirmation = terminal.readString();
-                    if (confirmation.equalsIgnoreCase("y")) {
-                        properties.remove(propertyIndex);
-                        this.balance += propertyToSell.getPrice();
-                        terminal.show("You have sold " + propertyToSell.toString());
-                    } else {
-                        terminal.show("Sale canceled.");
-                    }
-                } else {
-                    terminal.show("That index is not valid, try again");
+                    int sellPrice = propertyToSell.getPrice();
+                    properties.remove(propertyIndex);
+                    this.balance += sellPrice;
+                    terminal.show("You have sold " + propertyToSell.toString() + " for " + sellPrice);
                 }
             }
+        } else {
+            String sellMore;
+            do {
+                terminal.show(Constants.showPropertiesToSell);
+                for (Property property : getProperties()) {
+                    terminal.show(property.toString()); // por cada propiedad del jugador la muestra
+                }
+
+                terminal.show(Constants.askPropertyToSell);
+                int propertyIndex = terminal.read() - 1; // - 1 porque el array de propiedades empieza en 0
+
+                while (propertyIndex < 0 || propertyIndex >= getProperties().size()) {
+                    Property propertyToSell = properties.get(propertyIndex);
+                    String askToSell = String.format(Constants.askForSelling, propertyToSell.toString());
+                    terminal.show(askToSell);
+                    int confirmSell = terminal.read();
+
+                    if (confirmSell == 1) {
+                        int sellPrice = propertyToSell.getPrice();
+                        properties.remove(propertyIndex);
+                        this.balance += sellPrice;
+                        String sellSummary = String.format(Constants.sellSummary, propertyToSell.toString(), sellPrice);
+                        terminal.show(sellSummary);
+                    }
+                }
+                terminal.show(Constants.askForMoreProperties);
+                sellMore = terminal.readString();
+            } while (sellMore.equalsIgnoreCase("yes"));
         }
     }
 
