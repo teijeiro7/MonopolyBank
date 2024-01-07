@@ -3,6 +3,8 @@ package utils;
 public class Constants {
         public static final int MIN_PLAYERS = 2;
         public static final int MAX_PLAYERS = 4;
+        public static final int MAX_HOUSES = 4;
+        public static final int MAX_HOTELS = 1;
 
         // GAMEMANAGER
         // ----------------------------------------------------------------------------------------------------------
@@ -65,7 +67,7 @@ public class Constants {
         public static final String showPropertiesToSell = "Your properties are: ";
         public static final String askPropertyToSell = "Which property do you want to sell? (Select with numbers): ";
         public static final String askForMoreProperties = "Do you want to sell another property? (yes/no)";
-        public static final String sellSummary = "You have sold  + %s +  for  + %i";
+        public static final String sellSummary = "You have sold  + %s +  for  + %d";
         public static final String askForSelling = "Do you want to sell %s? (Select 0 to cancel and 1 to confirm): ";
 
         // ---------------------------------------------------------------------------------------------------------
@@ -84,19 +86,30 @@ public class Constants {
         public static final String payToOwner = "The player %s has to pay to %s";
 
         // -----------------------------------------------------------------------------------------mortgageStreet
-        public static final String askForMortgage = "Do you want to mortgage the property %s for %i€? (Select 0 to cancel and 1 to confirm): ";
+        public static final String askForMortgage = "Do you want to mortgage the property %s for %d€? (Select 0 to cancel and 1 to confirm): ";
         public static final String canNotMortgage = "You can not mortgage if you have any houses or hotels built. Do you want to sell them? (Select 0 to cancel and 1 to confirm): ";
+        public static final String confirmationMortgage = "You are going to mortgage %s for %d euros";
 
         // -----------------------------------------------------------------------------------------buyHousesHotels
         public static final String askBuyNumberHouses = "How many houses do you want to buy? ";
-        public static final String confirmBuyHouses = "Do you want to buy %i houses for %i? (Select 0 to cancel and 1 to confirm): ";
+        public static final String confirmBuyHouses = "Do you want to buy %d houses for %d? (Select 0 to cancel and 1 to confirm): ";
         public static final String maxHousesBuilt = "Cannot buy more than 4 houses, therefore, the only option is to buy a hotel";
         public static final String askForHotel = "Do you want to buy a hotel? (Select 0 to cancel and 1 to confirm): ";
-        public static final String showHousesHotelsBuilt = "This property has %i houses and %i hotels built";
+        public static final String showHousesHotelsBuilt = "This property has %d houses and %d hotels built";
         public static final String maxHousesHotelsBuilt = "You can not buy anything more in this property";
+        public static final String confirmationBuyHouse = "You have paid %d euros for %d houses";
+        public static final String confirmationBuyHotel = "You have paid %d euros for the hotel";
+        public static final String errorBuyHouses = "No puedes comprar más de %d casas.";
 
         // -----------------------------------------------------------------------------------------sellHousesHotels
         public static final String askSellNumberHouses = "How many houses do you want to sell? ";
         public static final String askWhatToSell = "What do you want to sell? (Select 0 for houses and 1 for hotel): ";
+        public static final String confirmSellHouses = "Do you want to sell %d houses for %d euros? (Select 0 to cancel and 1 to confirm): ";
+        public static final String confirmSellHotel = "Do you want to sell the hotel for %d euros? (Select 0 to cancel and 1 to confirm)";
+        public static final String confirmationSellHouse = "You are going to receive %d euros for %d houses";
+        public static final String confirmationSellHotel = "You are going to receive %d euros for the hotel";
 
+        // -----------------------------------------------------------------------------------------------buyProperty
+        public static final String confirmBuyProperty = "Do you want to buy %s for %d euros? (Select 0 for cancel and 1 to confirm): ";
+        public static final String confirmationBuyProperty = "You are going to pay %d euros for %s";
 }

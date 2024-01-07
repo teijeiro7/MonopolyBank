@@ -34,17 +34,17 @@ public class Game implements Serializable {
                 terminal.show(Constants.gameMenu[i]);
             }
             int gameMenuOption = terminal.read();
-            while (gameMenuOption > 1 || gameMenuOption < 3) {
-                if (gameMenuOption == 1) {
-                    play(gameName);
-                } else if (gameMenuOption == 2) {
-                    showGameStatus();
-                } else {
-                    saveGame(gameName);
-                    terminal.show(Constants.leavingGame);
-                    System.exit(0);
-                }
+            /* while (gameMenuOption < 1 || gameMenuOption < 3) { */
+            if (gameMenuOption == 1) {
+                play(gameName);
+            } else if (gameMenuOption == 2) {
+                showGameStatus();
+            } else {
+                saveGame(gameName);
+                terminal.show(Constants.leavingGame);
+                System.exit(0);
             }
+            /* } */
         }
     };
 
@@ -65,7 +65,6 @@ public class Game implements Serializable {
 
         monopolyCodeArray[idCard].doOperation(player);
 
-        terminal.closeScanner();
         saveGame(gameName);
     }
 
@@ -176,7 +175,7 @@ public class Game implements Serializable {
         terminal.show(Constants.selectNumberLanguage);
         int languageNumber = terminal.read();
 
-        terminal.show(Constants.confirmationLanguage + listOfLanguages[languageNumber]);
+        terminal.show(Constants.confirmationLanguage + listOfLanguages[languageNumber - 1]);
     }
 
 }

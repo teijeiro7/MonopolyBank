@@ -1,5 +1,7 @@
 package src;
 
+import utils.*;
+
 public class MonopolyCode {
     private String description;
     private int id;
@@ -13,9 +15,7 @@ public class MonopolyCode {
     }
 
     public String toString() {
-        String stringId = "Id: " + id;
-        String stringDescription = "Description: " + description;
-        return stringId + "\n" + stringDescription;
+        return id + ". " + description;
     }
 
     public int getId(int id) {

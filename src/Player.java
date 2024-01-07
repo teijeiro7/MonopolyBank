@@ -11,9 +11,10 @@ public class Player {
     private int balance;
     private boolean bankrupt;
     private ArrayList<Property> properties;
-    private static Terminal terminal;
+    private Terminal terminal;
 
     public Player(int id, Terminal terminal) {
+        this.terminal = terminal;
         this.color = Color.values()[id];
         System.out.print("Enter the name of player " + (id + 1) + ": ");
         String name = terminal.readString();
@@ -41,10 +42,13 @@ public class Player {
     public void pay(int amount, boolean mandatory) {
         if (mandatory) {
             if (balance >= amount) {
-                terminal.show(Constants.whatAreYouGoingToPay + amount + "€");
+                terminal.show(Constants.whatAreYouGoingToPay + amount + " euros");
                 balance -= amount;
             } else {
                 sellActives(amount, mandatory);
+                if (getBalance() < amount) {
+                    setBankrupt(true);
+                }
             }
         } else {
             terminal.show("Do you want to make the payment of " + amount + "€? (yes/no)");
@@ -60,7 +64,11 @@ public class Player {
         }
     }
 
-    public void setBankrupt(boolean bankrupt, int balance) {
+    public void receiveMoney(int amount) {
+        this.balance += amount;
+    }
+
+    public void setBankrupt(boolean bankrupt) {
         if (balance <= 0) {
             this.bankrupt = true;
         }
@@ -139,8 +147,8 @@ public class Player {
         newOwner.getProperties().addAll(properties);
     }
 
-    public void setProperties(ArrayList<Property> properties) {
-        this.properties = properties;
+    public void setProperties(Property property) {
+        properties.add(property);
     }
 
     public boolean thereAreThingsToSell() {
