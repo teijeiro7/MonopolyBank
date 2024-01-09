@@ -31,4 +31,12 @@ public abstract class Terminal {
     public abstract void show(String message);
 
     public abstract void closeScanner();
+
+    public String getDefaultMessage() {
+        return defaultMessage;
+    }
+
+    public void setDefaultMessage(String defaultMessage) {
+        this.defaultMessage = defaultMessage;
+    }
 }

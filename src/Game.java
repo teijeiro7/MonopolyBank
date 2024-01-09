@@ -1,13 +1,14 @@
 package src;
 
+import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.*;
-import utils.Constants;
+import utils.*;
 
 public class Game implements Serializable {
     private MonopolyCode[] monopolyCodeArray;
     private Player[] players;
-    private Terminal terminal;
+    private transient Terminal terminal;
     private boolean finished;
 
     public Game() {
@@ -24,8 +25,18 @@ public class Game implements Serializable {
         gameMenu(gameName, false);
     }
 
-    public void loadDataGame(Game game) {
-
+    public Game loadGame(String gameName) {
+        Game loadedGame = null;
+        try {
+            XMLDecoder decoder = new XMLDecoder(
+                    new BufferedInputStream(
+                            new FileInputStream(String.format("config/oldGames/" + gameName))));
+            loadedGame = (Game) decoder.readObject();
+            decoder.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return loadedGame;
     }
 
     public void gameMenu(String gameName, boolean finished) {
@@ -50,7 +61,11 @@ public class Game implements Serializable {
 
     public void showGameStatus() {
         for (int i = 0; i < players.length; i++) {
-            terminal.show(players[i].toString());
+            if (players[i] != null) {
+                terminal.show(players[i].toString());
+            } else {
+                terminal.show("Player at index " + i + " is null.");
+            }
         }
     }
 
@@ -139,15 +154,13 @@ public class Game implements Serializable {
 
     public void saveGame(String gameName) {
         try {
-            String filePath = String.format(Constants.oldGamesPath, gameName);
             XMLEncoder encoder = new XMLEncoder(
                     new BufferedOutputStream(
-                            new FileOutputStream(filePath)));
+                            new FileOutputStream("config/oldGames/" + gameName + ".xml")));
             encoder.writeObject(this);
             encoder.close();
-            terminal.show(Constants.savedGame + gameName);
         } catch (FileNotFoundException fileNotFound) {
-            terminal.show(Constants.errorSavedGame);
+            System.out.println("ERROR");
         }
     }
 
@@ -176,6 +189,38 @@ public class Game implements Serializable {
         int languageNumber = terminal.read();
 
         terminal.show(Constants.confirmationLanguage + listOfLanguages[languageNumber - 1]);
+    }
+
+    public MonopolyCode[] getMonopolyCodeArray() {
+        return monopolyCodeArray;
+    }
+
+    public void setMonopolyCodeArray(MonopolyCode[] monopolyCodeArray) {
+        this.monopolyCodeArray = monopolyCodeArray;
+    }
+
+    public Player[] getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(Player[] players) {
+        this.players = players;
+    }
+
+    public Terminal getTerminal() {
+        return terminal;
+    }
+
+    public void setTerminal(Terminal terminal) {
+        this.terminal = terminal;
+    }
+
+    public boolean isFinished() {
+        return finished;
+    }
+
+    public void setFinished(boolean finished) {
+        this.finished = finished;
     }
 
 }

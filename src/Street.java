@@ -12,8 +12,11 @@ public class Street extends Property {
     private int[] costStayingWithHouses;
     private Terminal terminal;
 
+    public Street() {
+    }
+
     public Street(String[] partes, Terminal terminal) {
-        super(partes[2], Integer.parseInt(partes[0]), terminal, (Integer.parseInt(partes[11]) / 2), false,
+        super(partes[2], Integer.parseInt(partes[0]), terminal, (Integer.parseInt(partes[11]) * 2), false,
                 Integer.parseInt(partes[11]));
         this.builtHouses = 0;
         this.builtHotels = 0;
@@ -231,4 +234,49 @@ public class Street extends Property {
 
         }
     }
+
+    public void setStreetName(String streetName) {
+        this.streetName = streetName;
+    }
+
+    public void setBuiltHouses(int builtHouses) {
+        this.builtHouses = builtHouses;
+    }
+
+    public void setBuiltHotels(int builtHotels) {
+        this.builtHotels = builtHotels;
+    }
+
+    public int getHousePrice() {
+        return housePrice;
+    }
+
+    public void setHousePrice(int housePrice) {
+        this.housePrice = housePrice;
+    }
+
+    public int getHotelPrice() {
+        return hotelPrice;
+    }
+
+    public void setHotelPrice(int hotelPrice) {
+        this.hotelPrice = hotelPrice;
+    }
+
+    public int[] getCostStayingWithHouses() {
+        return costStayingWithHouses;
+    }
+
+    public void setCostStayingWithHouses(int[] costStayingWithHouses) {
+        this.costStayingWithHouses = costStayingWithHouses;
+    }
+
+    public Terminal getTerminal() {
+        return terminal;
+    }
+
+    public void setTerminal(Terminal terminal) {
+        this.terminal = terminal;
+    }
+
 }

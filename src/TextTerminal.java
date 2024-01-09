@@ -1,23 +1,23 @@
 package src;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class TextTerminal extends Terminal {
-
-    private Scanner scanner;
+public class TextTerminal extends Terminal implements Serializable {
 
     public TextTerminal() {
-        this.scanner = new Scanner(System.in);
     }
 
     @Override
     public int read() {
-        return scanner.nextInt();
+        Scanner s = new Scanner(System.in);
+        return s.nextInt();
     }
 
     @Override
     public String readString() {
-        return scanner.next();
+        Scanner s = new Scanner(System.in);
+        return s.next();
     }
 
     @Override
@@ -26,6 +26,8 @@ public class TextTerminal extends Terminal {
     }
 
     public void closeScanner() {
-        scanner.close();
+        Scanner s = new Scanner(System.in);
+        s.close();
     }
+
 }

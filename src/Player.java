@@ -1,17 +1,21 @@
 package src;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import utils.Constants;
 
-public class Player {
+public class Player implements Serializable {
     private Color color;
     private String name;
     private int balance;
     private boolean bankrupt;
     private ArrayList<Property> properties;
     private Terminal terminal;
+
+    public Player() {
+    }
 
     public Player(int id, Terminal terminal) {
         this.terminal = terminal;
@@ -170,4 +174,29 @@ public class Player {
     public void setBalance(int balance) {
         this.balance = balance;
     }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setProperties(ArrayList<Property> properties) {
+        this.properties = properties;
+    }
+
+    public Terminal getTerminal() {
+        return terminal;
+    }
+
+    public void setTerminal(Terminal terminal) {
+        this.terminal = terminal;
+    }
+
 }

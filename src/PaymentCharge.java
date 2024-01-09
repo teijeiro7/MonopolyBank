@@ -5,6 +5,9 @@ import java.util.regex.*;
 public class PaymentCharge extends MonopolyCode {
     private int amount;
 
+    public PaymentCharge() {
+    }
+
     public PaymentCharge(String parts[], Terminal terminal) {
         super(parts[2], Integer.parseInt(parts[0]), terminal); // Call the constructor of MonopolyCode
 
@@ -34,4 +37,13 @@ public class PaymentCharge extends MonopolyCode {
             return "Player" + player.getName() + " has earned " + amount + "€";
         }
     }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
 }

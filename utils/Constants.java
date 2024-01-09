@@ -40,7 +40,6 @@ public class Constants {
 
         // ----------------------------------------------------------------------------------------------------------------
         // saveGame
-        public static final String oldGamesPath = "config/oldGames/%s.xml";
         public static final String savedGame = "You are going to save: ";
         public static final String errorSavedGame = "Can not save the game";
 
@@ -112,4 +111,24 @@ public class Constants {
         // -----------------------------------------------------------------------------------------------buyProperty
         public static final String confirmBuyProperty = "Do you want to buy %s for %d euros? (Select 0 for cancel and 1 to confirm): ";
         public static final String confirmationBuyProperty = "You are going to pay %d euros for %s";
+
+        // SERVICE
+        // ---------------------------------------------------------------------------------------------
+
+        // -------------------------------------------------------------------------------------------doOperation
+        public static final String askForDiceNumber = "Enter the number provided by the dice: ";
+
+        // --------------------------------------------------------------------------------------serviceNullOperations
+        public static final String askForService = "Do you want to buy %s for %d euros? (Select 0 for cancel and 1 to confirm): ";
+        public static final String confirmationBuyService = "You are going to pay %d euros for %s";
+
+        // ------------------------------------------------------------------------------------doServiceOwnerOperations
+        public static final String askForServiceMortgage = "You are the owner of %s. Do you want to mortgage it? (Select 0 to cancel and 1 to confirm): ";
+        public static final String confirmationMortgageService = "You are going to pay %d for mortgaging %s";
+
+        // TRANSPORT--------------------------------------------------------------------------------------------------
+
+        // ------------------------------------------------------------------------------------transportNullOperations
+        public static final String askForTransport = "Do you want to buy %s for %d euros? (Select 0 for cancel and 1 to confirm): ";
+        public static final String confirmationBuyTransport = "You are going to pay %d euros for %s";
 }

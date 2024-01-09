@@ -7,17 +7,15 @@ public abstract class Property extends MonopolyCode {
     private Player owner;
     private Player player;
 
+    public Property() {
+    }
+
     public Property(String description, int id, Terminal terminal, int price, boolean mortgage, int mortgageValue) {
         super(description, id, terminal);
         this.price = price;
         this.mortgage = mortgage;
         this.mortgageValue = mortgageValue;
     }
-
-    /*
-     * public String toString() {
-     * }
-     */
 
     public abstract void doOperation(Player player);
 
@@ -28,9 +26,6 @@ public abstract class Property extends MonopolyCode {
     public int getMortgageValue() {
         return mortgageValue;
     }
-
-    public void getPaymentForRent() {
-    };
 
     public Player getOwner() {
         return owner;
@@ -54,6 +49,26 @@ public abstract class Property extends MonopolyCode {
 
     public void showMortageSummary() {
         // Placeholder
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public boolean isMortgage() {
+        return mortgage;
+    }
+
+    public void setMortgage(boolean mortgage) {
+        this.mortgage = mortgage;
+    }
+
+    public void setMortgageValue(int mortgageValue) {
+        this.mortgageValue = mortgageValue;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
 }

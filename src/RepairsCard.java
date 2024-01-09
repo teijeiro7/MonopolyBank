@@ -8,6 +8,9 @@ public class RepairsCard extends MonopolyCode {
     private int amountForHotel;
     private Terminal terminal;
 
+    public RepairsCard() {
+    }
+
     public RepairsCard(String[] parts, Terminal terminal) {
         super(parts[2], Integer.parseInt(parts[0]), terminal);
 
@@ -45,4 +48,29 @@ public class RepairsCard extends MonopolyCode {
     public String showSummary(Player player, int amount) {
         return "El jugador " + player.getName() + " ha pagado " + amount + "€";
     }
+
+    public int getAmountForHouse() {
+        return amountForHouse;
+    }
+
+    public void setAmountForHouse(int amountForHouse) {
+        this.amountForHouse = amountForHouse;
+    }
+
+    public int getAmountForHotel() {
+        return amountForHotel;
+    }
+
+    public void setAmountForHotel(int amountForHotel) {
+        this.amountForHotel = amountForHotel;
+    }
+
+    public Terminal getTerminal() {
+        return terminal;
+    }
+
+    public void setTerminal(Terminal terminal) {
+        this.terminal = terminal;
+    }
+
 }
