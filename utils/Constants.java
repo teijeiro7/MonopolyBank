@@ -98,7 +98,7 @@ public class Constants {
         public static final String maxHousesHotelsBuilt = "You can not buy anything more in this property";
         public static final String confirmationBuyHouse = "You have paid %d euros for %d houses";
         public static final String confirmationBuyHotel = "You have paid %d euros for the hotel";
-        public static final String errorBuyHouses = "No puedes comprar más de %d casas.";
+        public static final String errorBuyHouses = "You can not buy more than %d houses.";
 
         // -----------------------------------------------------------------------------------------sellHousesHotels
         public static final String askSellNumberHouses = "How many houses do you want to sell? ";
@@ -131,4 +131,8 @@ public class Constants {
         // ------------------------------------------------------------------------------------transportNullOperations
         public static final String askForTransport = "Do you want to buy %s for %d euros? (Select 0 for cancel and 1 to confirm): ";
         public static final String confirmationBuyTransport = "You are going to pay %d euros for %s";
+
+        // --------------------------------------------------------------------------------doTransportOwnerOperations
+        public static final String askForTransportMortgage = "You are the owner of %s. Do you want to mortgage it? (Select 0 to cancel and 1 to confirm): ";
+        public static final String confirmationMortgageTransport = "You are going to pay %d for mortgaging %s";
 }

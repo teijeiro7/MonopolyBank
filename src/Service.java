@@ -13,9 +13,9 @@ public class Service extends Property {
     public Service(String[] partes, Terminal terminal) {
         super(partes[1], (Integer.parseInt(partes[0])), terminal, (Integer.parseInt(partes[5]) * 2), false,
                 Integer.parseInt(partes[5]));
-        this.costStaying = 0;
         this.serviceName = partes[2];
         this.terminal = terminal;
+        this.costStaying = 0;
     }
 
     public void doOperation(Player player) {
@@ -26,7 +26,18 @@ public class Service extends Property {
         } else if (player != getOwner()) {
             terminal.show(Constants.askForDiceNumber);
             int diceNumber = terminal.read();
-            player.pay(costStaying * diceNumber, true);
+
+            if (player.countServiceProperties() == 1) {
+                costStaying = 4;
+                terminal.show(String.format(Constants.payToOwner, player.getName(), getOwner().getName()));
+                player.pay(costStaying * diceNumber, true);
+                getOwner().receiveMoney(costStaying * diceNumber);
+            } else if (player.countServiceProperties() == 2) {
+                costStaying = 10;
+                player.pay(costStaying * diceNumber, true);
+                getOwner().receiveMoney(costStaying * diceNumber);
+            }
+
         }
     }
 

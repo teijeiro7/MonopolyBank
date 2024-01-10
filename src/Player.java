@@ -39,6 +39,26 @@ public class Player implements Serializable {
         return balance; // Placeholder
     }
 
+    public int countTransportProperties() {
+        int count = 0;
+        for (Property property : properties) {
+            if ("Transport".equals(property.getDescription())) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int countServiceProperties() {
+        int count = 0;
+        for (Property property : properties) {
+            if (property instanceof Service) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     public String getName() {
         return name;
     }

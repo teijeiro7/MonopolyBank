@@ -1,5 +1,7 @@
 package src;
 
+import javax.swing.text.AbstractDocument.Content;
+
 import utils.Constants;
 
 public class Transport extends Property {
@@ -16,6 +18,9 @@ public class Transport extends Property {
         this.costStaying = new int[4];
         this.terminal = terminal;
         this.transportName = partes[2];
+        for (int i = 0; i <= 4; i++) {
+            this.costStaying[i] = Integer.parseInt(partes[i + 3]);
+        }
     }
 
     public void getPaymentForRent() {
@@ -28,7 +33,9 @@ public class Transport extends Property {
         } else if (player == getOwner()) {
             doTransportOwnerOperations(player);
         } else if (player != getOwner()) {
-
+            terminal.show(String.format(Constants.payToOwner, player.getName(), getOwner().getName()));
+            player.pay(costStaying[player.countTransportProperties()], true);
+            getOwner().receiveMoney(costStaying[player.countTransportProperties()]);
         }
     }
 
@@ -44,7 +51,21 @@ public class Transport extends Property {
     }
 
     public void doTransportOwnerOperations(Player player) {
-        terminal.show(transportName);
+        terminal.show(String.format(Constants.askForTransportMortgage, transportName));
+        int mortgageServiceOption = terminal.read();
+
+        if (mortgageServiceOption == 1) {
+            mortgageTransport(player);
+        } else {
+
+        }
+    }
+
+    public void mortgageTransport(Player player) {
+        terminal.show(String.format(Constants.confirmationMortgageTransport, getMortgageValue(), transportName));
+        setMortgaged(true);
+        int pBalance = player.getBalance() - getMortgageValue();
+        player.setBalance(pBalance);
     }
 
     public int[] getCostStaying() {
