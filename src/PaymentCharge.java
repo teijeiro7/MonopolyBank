@@ -9,15 +9,12 @@ public class PaymentCharge extends MonopolyCode {
     }
 
     public PaymentCharge(String parts[], Terminal terminal) {
-        super(parts[2], Integer.parseInt(parts[0]), terminal); // Call the constructor of MonopolyCode
+        super(parts[2], Integer.parseInt(parts[0]), terminal);
 
-        // Pattern to find a number followed by the '€' symbol in parts[2]
         Pattern pattern = Pattern.compile("(-?\\d+)(€)");
         Matcher matcher = pattern.matcher(parts[2]);
 
-        if (matcher.find()) { // If it finds something equal to what was mentioned before in parts[2], then
-            // If there is a match, get group 1 from the matcher, which is the number, and
-            // assign it to the variable amount
+        if (matcher.find()) {
             String foundNumber = matcher.group(1);
             this.amount = Integer.parseInt(foundNumber);
         }
