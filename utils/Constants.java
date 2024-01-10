@@ -14,6 +14,13 @@ public class Constants {
         public static final String[] menuInterface = { "Main Menu", "----------------", "1: New Game", "2: Load Game",
                         "3: Exit", "----------------", };
         public static final String chooseOption = "Choose the option you want: ";
+        public static final String errorChooseOption = "ERROR: You can only choose between that 3 options";
+
+        // ----------------------------------------------------------------------------------------------------askForResumeGame
+        public static final String askForLoadFile = "Do you want to load a saved game? (Select 0 to cancel and 1 to accept): ";
+        public static final String noFilesAvailable = "No saved games available";
+        public static final String listFiles = "The following saved games will be displayed:";
+        public static final String askNumberFile = "Enter the number of the game you want to load: ";
 
         // GAME
         // --------------------------------------------------------------------------------------------------------------------
@@ -22,7 +29,9 @@ public class Constants {
         // play
         public static final String enterID = "Enter the ID of the card that has been drawn: ";
         public static final String whoseTurn = "Whose turn is it? (1-RED, 2-GREEN, 3-BLUE, 4-BLACK) ";
+        public static final String errorNumberPlayers = "ERROR: You can only select from 1 to %d players";
         public static final String turnSummary = "It's  %s's turn";
+        public static final String errorNumberID = "Please enter a valid ID between 00 and 81.";
 
         // -----------------------------------------------------------------------------------------------------------
         // createPlayers
@@ -57,6 +66,9 @@ public class Constants {
                         "2: Ask for game status",
                         "3: Leave the game", "---------------", "Choose the option you want: " };
         public static String leavingGame = "Leaving the game...";
+
+        // ----------------------------------------------------------------------------------------------------showGameStatus
+        public static String errorPlayerNull = "Player at index %d is null";
 
         // PLAYER
         // ------------------------------------------------------------------------------------------------------

@@ -40,44 +40,62 @@ public class Game implements Serializable {
     }
 
     public void gameMenu(String gameName, boolean finished) {
+        int gameMenuOption = 0;
         while (!finished) {
-            for (int i = 0; i < Constants.gameMenu.length; i++) {
-                terminal.show(Constants.gameMenu[i]);
-            }
-            int gameMenuOption = terminal.read();
-            /* while (gameMenuOption < 1 || gameMenuOption < 3) { */
-            if (gameMenuOption == 1) {
-                play(gameName);
-            } else if (gameMenuOption == 2) {
-                showGameStatus();
-            } else {
-                saveGame(gameName);
-                terminal.show(Constants.leavingGame);
-                System.exit(0);
-            }
-            /* } */
+            do {
+                for (int i = 0; i < Constants.gameMenu.length; i++) {
+                    terminal.show(Constants.gameMenu[i]);
+                }
+                gameMenuOption = terminal.read();
+
+                while (gameMenuOption < 1 || gameMenuOption > 3) {
+                    terminal.show("Please enter a valid number between 1 and 3.");
+                    gameMenuOption = terminal.read();
+                }
+
+                if (gameMenuOption == 1) {
+                    play(gameName);
+                } else if (gameMenuOption == 2) {
+                    showGameStatus();
+                } else {
+                    saveGame(gameName);
+                    terminal.show(Constants.leavingGame);
+                    System.exit(0);
+                }
+            } while (gameMenuOption < 1 || gameMenuOption > 3);
         }
-    };
+    }
 
     public void showGameStatus() {
         for (int i = 0; i < players.length; i++) {
             if (players[i] != null) {
                 terminal.show(players[i].toString());
             } else {
-                terminal.show("Player at index " + i + " is null.");
+                terminal.show(String.format(Constants.errorPlayerNull, i));
             }
         }
     }
 
     public void play(String gameName) {
-        terminal.show(Constants.enterID);
-        int idCard = terminal.read();
+        int idCard = -1;
+        do {
+            terminal.show(Constants.enterID);
+            idCard = terminal.read();
+            if (idCard < 0 || idCard > 81) {
+                terminal.show(Constants.errorNumberID);
+            }
+        } while (idCard < 0 || idCard > 80);
 
-        terminal.show(Constants.whoseTurn);
-        int playerTurn = terminal.read();
+        int playerTurn = 0;
+
+        do {
+            terminal.show(Constants.whoseTurn);
+            playerTurn = terminal.read();
+            terminal.show(String.format(Constants.errorNumberPlayers, players.length));
+        } while (playerTurn < 1 || playerTurn > players.length);
+
         Player player = players[playerTurn - 1];
         terminal.show(String.format(Constants.turnSummary, player.getName()));
-
         monopolyCodeArray[idCard].doOperation(player);
 
         saveGame(gameName);
@@ -168,11 +186,6 @@ public class Game implements Serializable {
         terminal.show(Constants.selectLanguage);
 
         File languagesFolder = new File(Constants.languagesFolder);
-
-        if (!languagesFolder.exists() || !languagesFolder.isDirectory()) {
-            terminal.show("Languages folder does not exist or is not a directory");
-            return;
-        }
 
         String[] listOfLanguages = languagesFolder.list();
 

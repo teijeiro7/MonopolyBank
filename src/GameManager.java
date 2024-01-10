@@ -1,10 +1,7 @@
 package src;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.util.Scanner;
 
 import utils.Constants;
 
@@ -16,80 +13,82 @@ public class GameManager {
     }
 
     public void start() {
-        for (int i = 1; i < Constants.menuInterface.length; i++) {
-            System.out.println(Constants.menuInterface[i]);
-        }
-
         int option = 0;
+        do {
+            for (int i = 1; i < Constants.menuInterface.length; i++) {
+                System.out.println(Constants.menuInterface[i]);
+            }
 
-        while (option < 1 || option > 3) {
-            option = 0;
             System.out.print(Constants.chooseOption);
             option = terminal.read();
-            if (option >= 1 && option <= 3) {
-                if (option == 1 || option == 2) {
-                    try {
-                        game.loadMonopolyCodes();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
 
-                if (option == 1) {
-                    game.newGame();
-                } else if (option == 2) {
-                    askForResumeGame();
-                } else {
-                    leaveGame();
-                }
+            while (option < 1 || option > 3) {
+                terminal.show(Constants.errorChooseOption);
+                terminal.show(Constants.chooseOption);
+                option = terminal.read();
+            }
 
+            if (option == 1 || option == 2) {
+                try {
+                    game.loadMonopolyCodes();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (option == 1) {
+                game.newGame();
+            } else if (option == 2) {
+                askForResumeGame();
             } else {
-                System.out.println("Please enter a valid number.");
+                leaveGame();
             }
 
             terminal.closeScanner();
-        }
 
+        } while (option < 1 || option > 3);
     }
 
     public void askForResumeGame() {
-        System.out.print("Do you want to load a saved game? (Y/N): ");
-        String option = terminal.readString();
+        System.out.print(Constants.askForLoadFile);
+        int option = terminal.read();
 
-        if (option.toUpperCase().equalsIgnoreCase("Y")) {
-            File folder = new File("config/oldGames");
-            String[] listOfFiles = folder.list();
+        do {
+            if (option == 1) {
+                File folder = new File("config/oldGames");
+                String[] listOfFiles = folder.list();
 
-            if (listOfFiles.length == 0) {
-                terminal.show("No saved games available");
-                start();
+                if (listOfFiles.length == 0) {
+                    terminal.show(Constants.noFilesAvailable);
+                    start();
+                }
+
+                terminal.show(Constants.listFiles);
+
+                for (int i = 0; i < listOfFiles.length; i++) {
+                    terminal.show((i) + ": " + listOfFiles[i]);
+                }
+
+                terminal.show(Constants.askNumberFile);
+                int gameNumber = terminal.read();
+                String loadedGame = listOfFiles[gameNumber];
+
+                try {
+                    game.loadGame(loadedGame);
+                } catch (Exception e) {
+                    String errorMessage = e.toString();
+                    terminal.show(errorMessage);
+                }
+
+                game.gameMenu(loadedGame, false);
             }
-
-            terminal.show("The following saved games will be displayed:");
-
-            for (int i = 0; i < listOfFiles.length; i++) {
-                terminal.show((i) + ": " + listOfFiles[i]);
-            }
-
-            terminal.show("Enter the number of the game you want to load: ");
-            int gameNumber = terminal.read();
-            String loadedGame = listOfFiles[gameNumber];
-
-            try {
-                game.loadGame(loadedGame);
-            } catch (Exception e) {
-                String errorMessage = e.toString();
-                terminal.show(errorMessage);
-            }
-
-            game.gameMenu(loadedGame, false);
-        }
+        } while (option < 1 || option > 3);
 
         terminal.closeScanner();
     }
 
     public void leaveGame() {
-        System.out.println("Leaving the game...");
+        System.out.println(Constants.leavingGame);
         System.exit(0);
     }
 

@@ -2,8 +2,6 @@ package src;
 
 import java.io.Serializable;
 
-import utils.*;
-
 public class MonopolyCode implements Serializable {
     private String description;
     private int id;

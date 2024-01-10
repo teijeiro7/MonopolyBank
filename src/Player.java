@@ -20,7 +20,7 @@ public class Player implements Serializable {
     public Player(int id, Terminal terminal) {
         this.terminal = terminal;
         this.color = Color.values()[id];
-        System.out.print("Enter the name of player " + (id + 1) + ": ");
+        terminal.show("Enter the name of player " + (id + 1) + ": ");
         String name = terminal.readString();
         this.name = name;
         this.balance = 1500;
