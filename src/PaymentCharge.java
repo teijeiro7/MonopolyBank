@@ -2,6 +2,8 @@ package src;
 
 import java.util.regex.*;
 
+import utils.Constants;
+
 public class PaymentCharge extends MonopolyCode {
     private int amount;
 
@@ -29,9 +31,9 @@ public class PaymentCharge extends MonopolyCode {
 
     private String showSummary(Player player, int amount) {
         if (amount < 0) {
-            return "Player " + player.getName() + " has paid " + amount + "€";
+            return String.format(Constants.showSummaryPay, player.getName(), amount);
         } else {
-            return "Player" + player.getName() + " has earned " + amount + "€";
+            return String.format(Constants.showSummaryEarn, player.getName(), amount);
         }
     }
 

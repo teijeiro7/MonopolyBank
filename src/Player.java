@@ -20,7 +20,7 @@ public class Player implements Serializable {
     public Player(int id, Terminal terminal) {
         this.terminal = terminal;
         this.color = Color.values()[id];
-        terminal.show("Enter the name of player " + (id + 1) + ": ");
+        terminal.show(String.format(Constants.enterNamePlayer, (id + 1)));
         String name = terminal.readString();
         this.name = name;
         this.balance = 1500;
@@ -75,9 +75,9 @@ public class Player implements Serializable {
                 }
             }
         } else {
-            terminal.show("Do you want to make the payment of " + amount + "€? (yes/no)");
-            String response = terminal.readString();
-            if (response.equalsIgnoreCase("yes")) {
+            terminal.show(String.format(Constants.askForPayment, amount));
+            int response = terminal.read();
+            if (response == 1) {
                 if (balance >= amount) {
                     terminal.show(Constants.whatAreYouGoingToPay + amount + "€");
                     balance -= amount;
@@ -119,11 +119,11 @@ public class Player implements Serializable {
                     int sellPrice = propertyToSell.getPrice();
                     properties.remove(propertyIndex);
                     this.balance += sellPrice;
-                    terminal.show("You have sold " + propertyToSell.toString() + " for " + sellPrice);
+                    terminal.show(String.format(Constants.confirmSellActive, propertyToSell.toString(), sellPrice));
                 }
             }
         } else {
-            String sellMore;
+            int sellMore;
             do {
                 terminal.show(Constants.showPropertiesToSell);
                 for (Property property : getProperties()) {
@@ -148,8 +148,8 @@ public class Player implements Serializable {
                     }
                 }
                 terminal.show(Constants.askForMoreProperties);
-                sellMore = terminal.readString();
-            } while (sellMore.equalsIgnoreCase("yes") || sellMore.equalsIgnoreCase("YES"));
+                sellMore = terminal.read();
+            } while (sellMore == 1);
         }
     }
 

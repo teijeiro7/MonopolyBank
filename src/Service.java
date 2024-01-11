@@ -58,8 +58,6 @@ public class Service extends Property {
 
         if (mortgageServiceOption == 1) {
             mortgageService(player);
-        } else {
-
         }
     }
 

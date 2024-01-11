@@ -178,7 +178,7 @@ public class Game implements Serializable {
             encoder.writeObject(this);
             encoder.close();
         } catch (FileNotFoundException fileNotFound) {
-            System.out.println("ERROR");
+            System.out.println(Constants.errorSavedGame);
         }
     }
 

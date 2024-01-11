@@ -73,17 +73,20 @@ public class Constants {
         // PLAYER
         // ------------------------------------------------------------------------------------------------------
 
-        // -------------------------------------------------------------------------------------------------------------
-        // sellActives
+        // ----------------------------------------------------------------------------------------------------------sellActives
         public static final String showPropertiesToSell = "Your properties are: ";
         public static final String askPropertyToSell = "Which property do you want to sell? (Select with numbers): ";
-        public static final String askForMoreProperties = "Do you want to sell another property? (yes/no)";
+        public static final String askForMoreProperties = "Do you want to sell another property? (Select 0 to cancel and 1 to confirm): ";
         public static final String sellSummary = "You have sold  + %s +  for  + %d";
         public static final String askForSelling = "Do you want to sell %s? (Select 0 to cancel and 1 to confirm): ";
+        public static final String confirmSellActive = "You have sold %s for %d";
 
-        // ---------------------------------------------------------------------------------------------------------
-        // pay
+        // -------------------------------------------------------------------------------------------------------pay
         public static final String whatAreYouGoingToPay = "You are going to pay ";
+        public static final String askForPayment = "Do you want to make the payment of %d €? (Select 0 to cancel and 1 to confirm)";
+
+        // -----------------------------------------------------------------------------------------playerConstructor
+        public static final String enterNamePlayer = "Enter the name of player %d: ";
 
         // STREET
         // ------------------------------------------------------------------------------------------------------
@@ -147,4 +150,18 @@ public class Constants {
         // --------------------------------------------------------------------------------doTransportOwnerOperations
         public static final String askForTransportMortgage = "You are the owner of %s. Do you want to mortgage it? (Select 0 to cancel and 1 to confirm): ";
         public static final String confirmationMortgageTransport = "You are going to pay %d for mortgaging %s";
+
+        // MONOPOLYBANK-----------------------------------------------------------------------------------------------
+        public static final String welcomeMonopoly = "WELCOME TO MONOPOLY";
+
+        // PAYMENTCHARGE----------------------------------------------------------------------------------------------
+
+        // ------------------------------------------------------------------------------------------------showSummary
+        public static final String showSummaryPay = "Player %s has paid %d €";
+        public static final String showSummaryEarn = "Player %s has earned %d €";
+
+        // REPAIRSCARD------------------------------------------------------------------------------------------------
+
+        // ------------------------------------------------------------------------------------------------showSummary
+        public static final String showRepairSummary = "El jugador %s ha pagado %d €";
 }

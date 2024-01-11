@@ -3,6 +3,8 @@ package src;
 import java.util.List;
 import java.util.regex.*;
 
+import utils.Constants;
+
 public class RepairsCard extends MonopolyCode {
     private int amountForHouse;
     private int amountForHotel;
@@ -46,7 +48,7 @@ public class RepairsCard extends MonopolyCode {
     }
 
     public String showSummary(Player player, int amount) {
-        return "El jugador " + player.getName() + " ha pagado " + amount + "€";
+        return String.format(Constants.showRepairSummary, player.getName(), amount);
     }
 
     public int getAmountForHouse() {

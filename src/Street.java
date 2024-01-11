@@ -97,11 +97,7 @@ public class Street extends Property {
             } else {
                 player.pay(costStayingWithHouses[5], true);
                 getOwner().receiveMoney(costStayingWithHouses[5]);
-            } // assuming calculateRent() calculates the
-              // rent that the player should
-              // pay
-
-            // tener en cuenta cuanto hay que pagar si tiene un hotel
+            }
         }
     }
 
