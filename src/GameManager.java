@@ -14,17 +14,24 @@ public class GameManager {
 
     public void start() {
         int option = 0;
+        TranslatorManager translatorManager = terminal.getTranslatorManager();
+        Translator translator = translatorManager.getCurrentIdiom();
+
         do {
             for (int i = 1; i < Constants.menuInterface.length; i++) {
                 System.out.println(Constants.menuInterface[i]);
             }
 
-            System.out.print(Constants.chooseOption);
+            String translatedChooseOption = translator.translate(Constants.chooseOption);
+            System.out.print(translatedChooseOption);
             option = terminal.read();
 
             while (option < 1 || option > 3) {
-                terminal.show(Constants.errorChooseOption);
-                terminal.show(Constants.chooseOption);
+                String translatedErrorChooseOption = translator.translate(Constants.errorChooseOption);
+                terminal.show(translatedErrorChooseOption);
+
+                String translatedChooseOption2 = translator.translate(Constants.chooseOption);
+                terminal.show(translatedChooseOption2);
                 option = terminal.read();
             }
 
@@ -50,7 +57,11 @@ public class GameManager {
     }
 
     public void askForResumeGame() {
-        System.out.print(Constants.askForLoadFile);
+        TranslatorManager translatorManager = terminal.getTranslatorManager();
+        Translator translator = translatorManager.getCurrentIdiom();
+
+        String translatedAskForLoadFile = translator.translate(Constants.askForLoadFile);
+        System.out.print(translatedAskForLoadFile);
         int option = terminal.read();
 
         do {
@@ -59,17 +70,20 @@ public class GameManager {
                 String[] listOfFiles = folder.list();
 
                 if (listOfFiles.length == 0) {
-                    terminal.show(Constants.noFilesAvailable);
+                    String translatedNoFilesAvailable = translator.translate(Constants.noFilesAvailable);
+                    terminal.show(translatedNoFilesAvailable);
                     start();
                 }
 
-                terminal.show(Constants.listFiles);
+                String translatedListFiles = translator.translate(Constants.listFiles);
+                terminal.show(translatedListFiles);
 
                 for (int i = 0; i < listOfFiles.length; i++) {
                     terminal.show((i) + ": " + listOfFiles[i]);
                 }
 
-                terminal.show(Constants.askNumberFile);
+                String translatedAskNumberFile = translator.translate(Constants.askNumberFile);
+                terminal.show(translatedAskNumberFile);
                 int gameNumber = terminal.read();
                 String loadedGame = listOfFiles[gameNumber];
 
@@ -88,7 +102,11 @@ public class GameManager {
     }
 
     public void leaveGame() {
-        System.out.println(Constants.leavingGame);
+        TranslatorManager translatorManager = terminal.getTranslatorManager();
+        Translator translator = translatorManager.getCurrentIdiom();
+
+        String translatedLeavingGame = translator.translate(Constants.leavingGame);
+        System.out.println(translatedLeavingGame);
         System.exit(0);
     }
 

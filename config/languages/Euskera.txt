@@ -1,79 +1,81 @@
-"Main Menu"; "Menu Nagusia"
-"----------------"; "----------------"
-"1: New Game"; "1: Joko Berria"
-"2: Load Game"; "2: Joko Kargatu"
-"3: Exit"; "3: Irten"
-"----------------"; "----------------"
-"Choose the option you want: "; "Hautatu nahi duzun aukera: "
-"ERROR: You can only choose between that 3 options"; "ERROREA: 3 aukera horietako bat hautatu behar duzu soilik"
-"Do you want to load a saved game? (Select 0 to cancel and 1 to accept): "; "Partida gordetako bat kargatu nahi duzu? (0 hautatu bertan behera utzi eta 1 onartu)"
-"No saved games available"; "Ez dago partida gordetarik"
-"The following saved games will be displayed:"; "Hurrengo partida gordetakoak erakutsiko dira:"
-"Enter the number of the game you want to load: "; "Kargatu nahi duzun partida zenbakia sartu: "
-"Whose turn is it? (1-RED, 2-GREEN, 3-BLUE, 4-BLACK) "; "Norren txanda da? (1-GORRIA, 2-BERDEA, 3-URDINA, 4-BELTZA) "
-"ERROR: You can only select from 1 to %d players"; "ERROREA: 1etik %d jokalari artean hautatu dezakezu soilik"
-"It's %s's turn"; "%s-ren txanda da"
-"Please enter a valid ID between 00 and 81."; "Mesedez, sartu baliozko IDa 00 eta 81 artean."
-"Enter the number of players for the game: "; "Jokalari kopurua sartu jokoarentzat: "
-"The number of players must be between 2 and 4"; "Jokalari kopurua 2 eta 4 artean egon behar da"
-"Error reading the file "; "Errorea fitxategia irakurtzean "
-"Enter the game name: "; "Jokoaren izena sartu: "
-"You are going to save: "; "Gordetzen ari zara: "
-"Can not save the game"; "Ezin da partida gorde"
-"Select the language you want to play with: "; "Hautatu nahi duzun hizkuntza jolasteko: "
-"There are not languages available"; "Ez dago eskuragarri dauden hizkuntzarik"
-"Select the number of the language do you want to play with: "; "Hautatu nahi duzun hizkuntzaren zenbakia: "
-"You are going to play with the language: "; "Hizkuntza honekin jolasten ari zara: "
-"Game Menu"; "Joko Menua"
-"---------------"; "---------------"
-"1: Make transition"; "1: Trantsizioa egin"
-"2: Ask for game status"; "2: Joko egoera eskatu"
-"3: Leave the game"; "3: Jokotik irten"
-"---------------"; "---------------"
-"Choose the option you want: "; "Hautatu nahi duzun aukera: "
-"Leaving the game..."; "Jokotik irten..."
-"Player at index %d is null"; "%d indizeko jokalaria hutsik dago"
-"Your properties are: "; "Zure propietateak hauek dira: "
-"Which property do you want to sell? (Select with numbers): "; "Ze propietatea saldu nahi duzu? (Zenbakiak erabiliz hautatu): "
-"Do you want to sell another property? (Select 0 to cancel and 1 to confirm): "; "Beste propietate bat saldu nahi duzu? (0 hautatu bertan behera utzi eta 1 onartu): "
-"You have sold %s for %d"; "%s saldu duzu %d-rentzat"
-"Do you want to sell %s? (Select 0 to cancel and 1 to confirm): "; "%s saldu nahi duzu? (0 hautatu bertan behera utzi eta 1 onartu): "
-"You have sold %s for %d"; "%s saldu duzu %d-rentzat"
-"You are going to pay "; "Ordainduko duzu "
-"Do you want to make the payment of %d €? (Select 0 to cancel and 1 to confirm)"; "%d € ordaindu nahi duzu? (0 hautatu bertan behera utzi eta 1 onartu)"
-"Enter the name of player %d: "; "%d. jokalariaren izena sartu: "
-"STREET MENU"; "KALE MENUA"
-"------------"; "------------"
-"1: Mortgage"; "1: Hipoteka"
-"2: Unmortgage"; "2: Hipoteka kentzea"
-"3: Buy houses/hotels"; "3: Etxeak/hotelak erosi"
-"4: Sell houses/hotels"; "4: Etxeak/hotelak saldu"
-"5: Nothing"; "5: Ezer ez"
-"The player %s has to pay to %s"; "%s jokalariak %s-ri ordaindu behar du"
-"Do you want to mortgage the property %s for %d€? (Select 0 to cancel and 1 to confirm): "; "%s propietatea hipotekatu nahi duzu %d€-rentzat? (0 hautatu bertan behera utzi eta 1 onartu): "
-"You can not mortgage if you have any houses or hotels built. Do you want to sell them? (Select 0 to cancel and 1 to confirm): "; "Ezinezkoa da hipoteka egitea etxe edo hotel bat eraikitzen baduzu. Saldu nahi dituzu? (0 hautatu bertan behera utzi eta 1 onartu): "
-"You are going to mortgage %s for %d euros"; "%s hipotekatuko duzu %d eurorentzat"
-"How many houses do you want to buy? "; "Zenbat etxe erosi nahi dituzu? "
-"Do you want to buy %d houses for %d? (Select 0 to cancel and 1 to confirm): "; "%d etxe erosi nahi dituzu %d-rentzat? (0 hautatu bertan behera utzi eta 1 onartu): "
-"Cannot buy more than 4 houses, therefore, the only option is to buy a hotel"; "Ezinezkoa da 4 etxe baino gehiago erosi, beraz, hotel bat erosi aukera bakarra dago"
-"Do you want to buy a hotel? (Select 0 to cancel and 1 to confirm): "; "Hotel bat erosi nahi duzu? (0 hautatu bertan behera utzi eta 1 onartu): "
-"This property has %d houses and %d hotels built"; "Propietate honek %d etxe eta %d hotel eraiki ditu"
-"You can not buy anything more in this property"; "Ezin duzu ezer gehiago erosi propietate honetan"
-"You have paid %d euros for %d houses"; "%d euro ordaindu dituzu %d etxeentzat"
-"You have paid %d euros for the hotel"; "%d euro ordaindu dituzu hotelarentzat"
-"You can not buy more than %d houses."; "%d etxe baino gehiago ezin dituzu erosi."
-"Do you want to sell %d houses for %d euros? (Select 0 to cancel and 1 to confirm): "; "%d etxe saldu nahi dituzu %d eurorentzat? (0 hautatu bertan behera utzi eta 1 onartu): "
-"Do you want to sell the hotel for %d euros? (Select 0 to cancel and 1 to confirm)"; "Hotel bat saldu nahi duzu %d eurorentzat? (0 hautatu bertan behera utzi eta 1 onartu)"
-"You are going to receive %d euros for %d houses"; "%d euro jasoko dituzu %d etxeentzat"
-"You are going to receive %d euros for the hotel"; "%d euro jasoko dituzu hotelarentzat"
-"Do you want to buy %s for %d euros? (Select 0 for cancel and 1 to confirm): "; "%s erosi nahi duzu %d eurorentzat? (0 hautatu bertan behera utzi eta 1 onartu): "
-"You are going to pay %d euros for %s"; "%d euro ordainduko dituzu %s-rentzat"
-"Enter the number provided by the dice: "; "Zurea den zenbakia sartu: "
-"Do you want to buy %s for %d euros? (Select 0 for cancel and 1 to confirm): "; %s eros nahi duzu %d eurotan? (0 hautatu bertan behera utzi eta 1 berretsi).
-"You are going to pay %d euros for %s"; %d euro ordainduko dituzu %s-arentzat.
-"You are the owner of %s. Do you want to mortgage it? (Select 0 to cancel and 1 to confirm): "; - %s-en jabe zara. Hipotekatu nahi duzu? (0 hautatu bertan behera utzi eta 1 berretsi).
-"You are going to pay %d for mortgaging %s"; %d ordainduko dituzu %s hipotekatzeko.
-"WELCOME TO MONOPOLY"; ONGI ETORRI MONOPOLYra.
-"Player %s has paid %d €"; %s jokalaria %d € ordaindu du.
-"Player %s has earned %d €"; %s jokalaria %d € irabazi du.
-"El jugador %s ha pagado %d €"; %s jokalaria %d € ordaindu du.
+Main Menu; Menu Nagusia
+----------------; ----------------
+1: New Game; 1: Joko Berria
+2: Load Game; 2: Joko Kargatu
+3: Exit; 3: Irten
+----------------; ----------------
+Choose the option you want: ; Hautatu nahi duzun aukera:
+ERROR: You can only choose between that 3 options; ERROREA: 3 aukera horietako bat hautatu behar duzu soilik
+Do you want to load a saved game? (Select 0 to cancel and 1 to accept): ; Partida gordetako bat kargatu nahi duzu? (0 hautatu bertan behera utzi eta 1 onartu)
+No saved games available; Ez dago partida gordetarik
+The following saved games will be displayed:; Hurrengo partida gordetakoak erakutsiko dira:
+Enter the number of the game you want to load: ; Kargatu nahi duzun partida zenbakia sartu:
+Whose turn is it? (1-RED, 2-GREEN, 3-BLUE, 4-BLACK) ; Norren txanda da? (1-GORRIA, 2-BERDEA, 3-URDINA, 4-BELTZA)
+ERROR: You can only select from 1 to %d players; ERROREA: 1etik %d jokalari artean hautatu dezakezu soilik
+It's %s's turn; %s-ren txanda da
+Please enter a valid ID between 00 and 81.; Mesedez, sartu baliozko IDa 00 eta 81 artean.
+Enter the number of players for the game: ; Jokalari kopurua sartu jokoarentzat:
+The number of players must be between 2 and 4; Jokalari kopurua 2 eta 4 artean egon behar da
+Error reading the file ; Errorea fitxategia irakurtzean
+Enter the game name: ; Jokoaren izena sartu:
+You are going to save: ; Gordetzen ari zara:
+Can not save the game; Ezin da partida gorde
+Select the language you want to play with: ; Hautatu nahi duzun hizkuntza jolasteko:
+There are not languages available; Ez dago eskuragarri dauden hizkuntzarik
+Select the number of the language do you want to play with: ; Hautatu nahi duzun hizkuntzaren zenbakia:
+You are going to play with the language: ; Hizkuntza honekin jolasten ari zara:
+Game Menu; Joko Menua
+---------------; ---------------
+1: Make transition; 1: Trantsizioa egin
+2: Ask for game status; 2: Joko egoera eskatu
+3: Leave the game; 3: Jokotik irten
+---------------; ---------------
+Choose the option you want: ; Hautatu nahi duzun aukera:
+Leaving the game...; Jokotik irten...
+Player at index %d is null; %d indizeko jokalaria hutsik dago
+Your properties are: ; Zure propietateak hauek dira:
+Which property do you want to sell? (Select with numbers): ; Ze propietatea saldu nahi duzu? (Zenbakiak erabiliz hautatu):
+Do you want to sell another property? (Select 0 to cancel and 1 to confirm): ; Beste propietate bat saldu nahi duzu? (0 hautatu bertan behera utzi eta 1 onartu):
+You have sold %s for %d; %s saldu duzu %d-rentzat
+Do you want to sell %s? (Select 0 to cancel and 1 to confirm): ; %s saldu nahi duzu? (0 hautatu bertan behera utzi eta 1 onartu):
+You have sold %s for %d; %s saldu duzu %d-rentzat
+You are going to pay ; Ordainduko duzu
+Do you want to make the payment of %d €? (Select 0 to cancel and 1 to confirm); %d € ordaindu nahi duzu? (0 hautatu bertan behera utzi eta 1 onartu)
+Enter the name of player %d: ; %d. jokalariaren izena sartu:
+STREET MENU; KALE MENUA
+------------; ------------
+1: Mortgage; 1: Hipoteka
+2: Unmortgage; 2: Hipoteka kentzea
+3: Buy houses/hotels; 3: Etxeak/hotelak erosi
+4: Sell houses/hotels; 4: Etxeak/hotelak saldu
+5: Nothing; 5: Ezer ez
+1: Buy Street; 1: Etxe erosi
+2: Nothing; 2: Ezer ez
+The player %s has to pay to %s; %s jokalariak %s-ri ordaindu behar du
+Do you want to mortgage the property %s for %d€? (Select 0 to cancel and 1 to confirm): ; %s propietatea hipotekatu nahi duzu %d€-rentzat? (0 hautatu bertan behera utzi eta 1 onartu):
+You can not mortgage if you have any houses or hotels built. Do you want to sell them? (Select 0 to cancel and 1 to confirm): ; Ezinezkoa da hipoteka egitea etxe edo hotel bat eraikitzen baduzu. Saldu nahi dituzu? (0 hautatu bertan behera utzi eta 1 onartu):
+You are going to mortgage %s for %d euros; %s hipotekatuko duzu %d eurorentzat
+How many houses do you want to buy? ; Zenbat etxe erosi nahi dituzu?
+Do you want to buy %d houses for %d? (Select 0 to cancel and 1 to confirm): ; %d etxe erosi nahi dituzu %d-rentzat? (0 hautatu bertan behera utzi eta 1 onartu):
+Cannot buy more than 4 houses, therefore, the only option is to buy a hotel; Ezinezkoa da 4 etxe baino gehiago erosi, beraz, hotel bat erosi aukera bakarra dago
+Do you want to buy a hotel? (Select 0 to cancel and 1 to confirm): ; Hotel bat erosi nahi duzu? (0 hautatu bertan behera utzi eta 1 onartu):
+This property has %d houses and %d hotels built; Propietate honek %d etxe eta %d hotel eraiki ditu
+You can not buy anything more in this property; Ezin duzu ezer gehiago erosi propietate honetan
+You have paid %d euros for %d houses; %d euro ordaindu dituzu %d etxeentzat
+You have paid %d euros for the hotel; %d euro ordaindu dituzu hotelarentzat
+You can not buy more than %d houses.; %d etxe baino gehiago ezin dituzu erosi.
+Do you want to sell %d houses for %d euros? (Select 0 to cancel and 1 to confirm): ; %d etxe saldu nahi dituzu %d eurorentzat? (0 hautatu bertan behera utzi eta 1 onartu):
+Do you want to sell the hotel for %d euros? (Select 0 to cancel and 1 to confirm); Hotel bat saldu nahi duzu %d eurorentzat? (0 hautatu bertan behera utzi eta 1 onartu)
+You are going to receive %d euros for %d houses; %d euro jasoko dituzu %d etxeentzat
+You are going to receive %d euros for the hotel; %d euro jasoko dituzu hotelarentzat
+Do you want to buy %s for %d euros? (Select 0 for cancel and 1 to confirm): ; %s erosi nahi duzu %d eurorentzat? (0 hautatu bertan behera utzi eta 1 onartu):
+You are going to pay %d euros for %s; %d euro ordainduko dituzu %s-rentzat
+Enter the number provided by the dice: ; Zurea den zenbakia sartu:
+Do you want to buy %s for %d euros? (Select 0 for cancel and 1 to confirm): ; %s eros nahi duzu %d eurotan? (0 hautatu bertan behera utzi eta 1 berretsi).
+You are going to pay %d euros for %s; %d euro ordainduko dituzu %s-arentzat.
+You are the owner of %s. Do you want to mortgage it? (Select 0 to cancel and 1 to confirm): ; %s-en jabe zara. Hipotekatu nahi duzu? (0 hautatu bertan behera utzi eta 1 berretsi).
+You are going to pay %d for mortgaging %s; %d ordainduko dituzu %s hipotekatzeko.
+WELCOME TO MONOPOLY; ONGI ETORRI MONOPOLYra.
+Player %s has paid %d €; %s jokalaria %d € ordaindu du.
+Player %s has earned %d €; %s jokalaria %d € irabazi du.
+El jugador %s ha pagado %d €; %s jokalaria %d € ordaindu du.

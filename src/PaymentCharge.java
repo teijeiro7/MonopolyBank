@@ -6,6 +6,7 @@ import utils.Constants;
 
 public class PaymentCharge extends MonopolyCode {
     private int amount;
+    private Terminal terminal;
 
     public PaymentCharge() {
     }
@@ -20,6 +21,8 @@ public class PaymentCharge extends MonopolyCode {
             String foundNumber = matcher.group(1);
             this.amount = Integer.parseInt(foundNumber);
         }
+
+        this.terminal = terminal;
     }
 
     public void doOperation(Player p) {
@@ -30,10 +33,15 @@ public class PaymentCharge extends MonopolyCode {
     }
 
     private String showSummary(Player player, int amount) {
+        TranslatorManager translatorManager = terminal.getTranslatorManager();
+        Translator translator = translatorManager.getCurrentIdiom();
+
         if (amount < 0) {
-            return String.format(Constants.showSummaryPay, player.getName(), amount);
+            String translatedShowSummaryPay = translator.translate(Constants.showSummaryPay);
+            return String.format(translatedShowSummaryPay, player.getName(), amount);
         } else {
-            return String.format(Constants.showSummaryEarn, player.getName(), amount);
+            String translatedShowSummaryEarn = translator.translate(Constants.showSummaryEarn);
+            return String.format(translatedShowSummaryEarn, player.getName(), amount);
         }
     }
 

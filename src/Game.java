@@ -41,15 +41,21 @@ public class Game implements Serializable {
 
     public void gameMenu(String gameName, boolean finished) {
         int gameMenuOption = 0;
+        TranslatorManager translatorManager = terminal.getTranslatorManager();
+        Translator translator = translatorManager.getCurrentIdiom();
+
         while (!finished) {
             do {
                 for (int i = 0; i < Constants.gameMenu.length; i++) {
-                    terminal.show(Constants.gameMenu[i]);
+                    String translatedString = translator.translate(Constants.gameMenu[i]);
+                    terminal.show(translatedString);
+
                 }
                 gameMenuOption = terminal.read();
 
                 while (gameMenuOption < 1 || gameMenuOption > 3) {
-                    terminal.show("Please enter a valid number between 1 and 3.");
+                    String translated = translator.translate("Please enter a valid number between 1 and 3.");
+                    terminal.show(translated);
                     gameMenuOption = terminal.read();
                 }
 
@@ -59,7 +65,8 @@ public class Game implements Serializable {
                     showGameStatus();
                 } else {
                     saveGame(gameName);
-                    terminal.show(Constants.leavingGame);
+                    String translatedLeavingGame = translator.translate(Constants.leavingGame);
+                    terminal.show(translatedLeavingGame);
                     System.exit(0);
                 }
             } while (gameMenuOption < 1 || gameMenuOption > 3);
@@ -67,31 +74,40 @@ public class Game implements Serializable {
     }
 
     public void showGameStatus() {
+        TranslatorManager translatorManager = terminal.getTranslatorManager();
+        Translator translator = translatorManager.getCurrentIdiom();
         for (int i = 0; i < players.length; i++) {
             if (players[i] != null) {
                 terminal.show(players[i].toString());
             } else {
-                terminal.show(String.format(Constants.errorPlayerNull, i));
+                String translatedErrorPlayerNull = translator.translate(Constants.errorPlayerNull);
+                terminal.show(String.format(translatedErrorPlayerNull, i));
             }
         }
     }
 
     public void play(String gameName) {
+        TranslatorManager translatorManager = terminal.getTranslatorManager();
+        Translator translator = translatorManager.getCurrentIdiom();
         int idCard = -1;
         do {
-            terminal.show(Constants.enterID);
+            String translatedEnterID = translator.translate(Constants.enterID);
+            terminal.show(translatedEnterID);
             idCard = terminal.read();
             if (idCard < 0 || idCard > 81) {
-                terminal.show(Constants.errorNumberID);
+                String translatedErrorNumberID = translator.translate(Constants.errorNumberID);
+                terminal.show(translatedErrorNumberID);
             }
         } while (idCard < 0 || idCard > 80);
 
         int playerTurn = 0;
 
         do {
-            terminal.show(Constants.whoseTurn);
+            String translatedWhoseTurn = translator.translate(Constants.whoseTurn);
+            terminal.show(translatedWhoseTurn);
             playerTurn = terminal.read();
-            terminal.show(String.format(Constants.errorNumberPlayers, players.length));
+            String translatedErrorNumberPlayers = translator.translate(Constants.errorNumberPlayers);
+            terminal.show(String.format(translatedErrorNumberPlayers, players.length));
         } while (playerTurn < 1 || playerTurn > players.length);
 
         Player player = players[playerTurn - 1];
@@ -102,11 +118,16 @@ public class Game implements Serializable {
     }
 
     public void createPlayers() {
-        terminal.show(Constants.numberPlayers);
+        TranslatorManager translatorManager = terminal.getTranslatorManager();
+        Translator translator = translatorManager.getCurrentIdiom();
+
+        String translatedNumberPlayers = translator.translate(Constants.numberPlayers);
+        terminal.show(translatedNumberPlayers);
         int numPlayers = terminal.read();
 
         if (numPlayers < 2 || numPlayers > 4) {
-            terminal.show(Constants.numberWarning);
+            String translatedNumberWarning = translator.translate(Constants.numberWarning);
+            terminal.show(translatedNumberWarning);
             createPlayers();
         }
 
@@ -201,7 +222,11 @@ public class Game implements Serializable {
         terminal.show(Constants.selectNumberLanguage);
         int languageNumber = terminal.read();
 
-        terminal.show(Constants.confirmationLanguage + listOfLanguages[languageNumber - 1]);
+        TranslatorManager translatorManager = terminal.getTranslatorManager();
+        translatorManager.changeIdiom(languageNumber - 1);
+        Translator translator = translatorManager.getCurrentIdiom();
+        String translated = translator.translate(Constants.confirmationLanguage);
+        terminal.show(translated + listOfLanguages[languageNumber - 1]);
     }
 
     public MonopolyCode[] getMonopolyCodeArray() {

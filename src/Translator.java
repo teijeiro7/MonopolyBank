@@ -32,10 +32,11 @@ public class Translator implements Serializable {
     }
 
     public String translate(String input) {
-        if (!dictionary.containsKey(input)) {
+        if (dictionary.containsKey(input)) {
+            return dictionary.get(input);
+        } else {
             return input;
         }
-        return dictionary.get(input);
     }
 
     public String getLanguage() {

@@ -82,7 +82,7 @@ public class Constants {
         public static final String confirmSellActive = "You have sold %s for %d";
 
         // -------------------------------------------------------------------------------------------------------pay
-        public static final String whatAreYouGoingToPay = "You are going to pay ";
+        public static final String whatAreYouGoingToPay = "You are going to pay %d euros";
         public static final String askForPayment = "Do you want to make the payment of %d €? (Select 0 to cancel and 1 to confirm)";
 
         // -----------------------------------------------------------------------------------------playerConstructor

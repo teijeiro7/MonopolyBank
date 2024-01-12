@@ -18,10 +18,16 @@ public class Player implements Serializable {
     }
 
     public Player(int id, Terminal terminal) {
+        TranslatorManager translatorManager = terminal.getTranslatorManager();
+        Translator translator = translatorManager.getCurrentIdiom();
+
         this.terminal = terminal;
         this.color = Color.values()[id];
-        terminal.show(String.format(Constants.enterNamePlayer, (id + 1)));
+
+        String translatedEnterNamePlayer = translator.translate(Constants.enterNamePlayer);
+        terminal.show(String.format(translatedEnterNamePlayer, (id + 1)));
         String name = terminal.readString();
+
         this.name = name;
         this.balance = 1500;
         this.bankrupt = false;
@@ -30,9 +36,19 @@ public class Player implements Serializable {
 
     @Override
     public String toString() {
-        return "------------" + "\nColor: " + color + "\nName: " + name + "\nBalance: " + balance
-                + "\nBankrupt: " + bankrupt
-                + "\nProperties: " + properties + "\n------------";
+        TranslatorManager translatorManager = terminal.getTranslatorManager();
+        Translator translator = translatorManager.getCurrentIdiom();
+
+        String translatedColor = translator.translate("Color");
+        String translatedName = translator.translate("Name");
+        String translatedBalance = translator.translate("Balance");
+        String translatedBankrupt = translator.translate("Bankrupt");
+        String translatedProperties = translator.translate("Properties");
+
+        return ("------------" + "\n" + translatedColor + ": " + color + "\n"
+                + translatedName + ": " + name + "\n" + translatedBalance
+                + ": " + balance + "\n" + translatedBankrupt + ": " + bankrupt + "\n"
+                + translatedProperties + ": " + properties + "\n------------");
     }
 
     public int getBalance() {
@@ -64,9 +80,13 @@ public class Player implements Serializable {
     }
 
     public void pay(int amount, boolean mandatory) {
+        TranslatorManager translatorManager = terminal.getTranslatorManager();
+        Translator translator = translatorManager.getCurrentIdiom();
+
         if (mandatory) {
             if (balance >= amount) {
-                terminal.show(Constants.whatAreYouGoingToPay + amount + " euros");
+                String translatedWhatAreYouGoingToPay = translator.translate(Constants.whatAreYouGoingToPay);
+                terminal.show(String.format(translatedWhatAreYouGoingToPay, amount));
                 balance -= amount;
             } else {
                 sellActives(amount, mandatory);
@@ -75,11 +95,13 @@ public class Player implements Serializable {
                 }
             }
         } else {
-            terminal.show(String.format(Constants.askForPayment, amount));
+            String translatedAskForPayment = translator.translate(Constants.askForPayment);
+            terminal.show(String.format(translatedAskForPayment, amount));
             int response = terminal.read();
             if (response == 1) {
                 if (balance >= amount) {
-                    terminal.show(Constants.whatAreYouGoingToPay + amount + "€");
+                    String translatedWhatAreYouGoingToPay = translator.translate(Constants.whatAreYouGoingToPay);
+                    terminal.show(String.format(translatedWhatAreYouGoingToPay, amount));
                     balance -= amount;
                 } else {
                     sellActives(amount, mandatory);
@@ -103,15 +125,19 @@ public class Player implements Serializable {
     }
 
     public void sellActives(int targetAmount, boolean mandatory) {
+        TranslatorManager translatorManager = terminal.getTranslatorManager();
+        Translator translator = translatorManager.getCurrentIdiom();
 
         if (mandatory) {
             while (this.balance < targetAmount) {
-                terminal.show(Constants.showPropertiesToSell);
+                String translatedShowPropertiesToSell = translator.translate(Constants.showPropertiesToSell);
+                terminal.show(translatedShowPropertiesToSell);
                 for (Property property : getProperties()) {
                     terminal.show(property.toString()); // por cada propiedad del jugador la muestra
                 }
 
-                terminal.show(Constants.askPropertyToSell);
+                String translatedAskPropertyToSell = translator.translate(Constants.askPropertyToSell);
+                terminal.show(translatedAskPropertyToSell);
                 int propertyIndex = terminal.read() - 1; // - 1 porque el array de propiedades empieza en 0
 
                 while (propertyIndex < 0 || propertyIndex >= getProperties().size()) {
@@ -119,13 +145,17 @@ public class Player implements Serializable {
                     int sellPrice = propertyToSell.getPrice();
                     properties.remove(propertyIndex);
                     this.balance += sellPrice;
-                    terminal.show(String.format(Constants.confirmSellActive, propertyToSell.toString(), sellPrice));
+
+                    String translatedConfirmSellActive = translator.translate(Constants.confirmSellActive);
+                    terminal.show(String.format(translatedConfirmSellActive, propertyToSell.toString(), sellPrice));
                 }
             }
         } else {
             int sellMore;
+
             do {
-                terminal.show(Constants.showPropertiesToSell);
+                String translatedShowPropertiesToSell = translator.translate(Constants.showPropertiesToSell);
+                terminal.show(translatedShowPropertiesToSell);
                 for (Property property : getProperties()) {
                     terminal.show(property.toString()); // por cada propiedad del jugador la muestra
                 }
@@ -135,7 +165,9 @@ public class Player implements Serializable {
 
                 while (propertyIndex < 0 || propertyIndex >= getProperties().size()) {
                     Property propertyToSell = properties.get(propertyIndex);
-                    String askToSell = String.format(Constants.askForSelling, propertyToSell.toString());
+
+                    String translatedAskToSell = translator.translate(Constants.askForSelling);
+                    String askToSell = String.format(translatedAskToSell, propertyToSell.toString());
                     terminal.show(askToSell);
                     int confirmSell = terminal.read();
 
@@ -143,11 +175,16 @@ public class Player implements Serializable {
                         int sellPrice = propertyToSell.getPrice();
                         properties.remove(propertyIndex);
                         this.balance += sellPrice;
-                        String sellSummary = String.format(Constants.sellSummary, propertyToSell.toString(), sellPrice);
+
+                        String translatedConfirmSellActive = translator.translate(Constants.sellSummary);
+                        String sellSummary = String.format(
+                                translatedConfirmSellActive, propertyToSell.toString(), sellPrice);
                         terminal.show(sellSummary);
                     }
                 }
-                terminal.show(Constants.askForMoreProperties);
+
+                String translatedAskForMoreProperties = translator.translate(Constants.askForMoreProperties);
+                terminal.show(translatedAskForMoreProperties);
                 sellMore = terminal.read();
             } while (sellMore == 1);
         }

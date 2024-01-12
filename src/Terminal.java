@@ -2,14 +2,14 @@ package src;
 
 public abstract class Terminal {
 
-    private String defaultMessage;
+    private TranslatorManager translatorManager;
 
     public Terminal() {
-        // Constructor predeterminado
+        this.translatorManager = new TranslatorManager();
     }
 
-    public Terminal(String defaultMessage) {
-        this.defaultMessage = defaultMessage;
+    public TranslatorManager getTranslatorManager() {
+        return this.translatorManager;
     }
 
     public abstract int read();
@@ -20,11 +20,4 @@ public abstract class Terminal {
 
     public abstract void closeScanner();
 
-    public String getDefaultMessage() {
-        return defaultMessage;
-    }
-
-    public void setDefaultMessage(String defaultMessage) {
-        this.defaultMessage = defaultMessage;
-    }
 }
