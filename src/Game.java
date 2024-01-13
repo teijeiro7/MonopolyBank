@@ -8,7 +8,7 @@ import utils.*;
 public class Game implements Serializable {
     private MonopolyCode[] monopolyCodeArray;
     private Player[] players;
-    private transient Terminal terminal;
+    private /* transient */ Terminal terminal;
     private boolean finished;
 
     public Game() {
