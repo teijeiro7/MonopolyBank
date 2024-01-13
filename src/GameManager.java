@@ -88,7 +88,7 @@ public class GameManager {
                 String loadedGame = listOfFiles[gameNumber];
 
                 try {
-                    game.loadGame(loadedGame);
+                    game = game.loadGame(loadedGame);
                 } catch (Exception e) {
                     String errorMessage = e.toString();
                     terminal.show(errorMessage);
