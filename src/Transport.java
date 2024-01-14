@@ -22,30 +22,43 @@ public class Transport extends Property {
     }
 
     public void doOperation(Player player) {
+        TranslatorManager translatorManager = terminal.getTranslatorManager();
+        Translator translator = translatorManager.getCurrentIdiom();
+
         if (getOwner() == null) {
             transportNullOperations(player);
         } else if (player == getOwner()) {
             doTransportOwnerOperations(player);
         } else if (player != getOwner()) {
-            terminal.show(String.format(Constants.payToOwner, player.getName(), getOwner().getName()));
+            String translatedPayToOwner = translator.translate(Constants.payToOwner);
+            terminal.show(String.format(translatedPayToOwner, player.getName(), getOwner().getName()));
             player.pay(costStaying[player.countTransportProperties()], true);
             getOwner().receiveMoney(costStaying[player.countTransportProperties()]);
         }
     }
 
     public void transportNullOperations(Player player) {
-        terminal.show(String.format(Constants.askForTransport, transportName, getPrice()));
+        TranslatorManager translatorManager = terminal.getTranslatorManager();
+        Translator translator = translatorManager.getCurrentIdiom();
+
+        String translatedAskForTransport = translator.translate(Constants.askForTransport);
+        terminal.show(String.format(translatedAskForTransport, transportName, getPrice()));
         int transportOption = terminal.read();
 
         if (transportOption == 1) {
-            terminal.show(String.format(Constants.confirmationBuyTransport, getPrice(), transportName));
+            String translatedConfirmBuyTransport = translator.translate(Constants.confirmationBuyTransport);
+            terminal.show(String.format(translatedConfirmBuyTransport, getPrice(), transportName));
             int pBalance = player.getBalance() - getPrice();
             player.setBalance(pBalance);
         }
     }
 
     public void doTransportOwnerOperations(Player player) {
-        terminal.show(String.format(Constants.askForTransportMortgage, transportName));
+        TranslatorManager translatorManager = terminal.getTranslatorManager();
+        Translator translator = translatorManager.getCurrentIdiom();
+
+        String translatedAskForTransportMortgage = translator.translate(Constants.askForTransportMortgage);
+        terminal.show(String.format(translatedAskForTransportMortgage, transportName));
         int mortgageServiceOption = terminal.read();
 
         if (mortgageServiceOption == 1) {

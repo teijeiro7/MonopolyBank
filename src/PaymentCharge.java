@@ -28,7 +28,7 @@ public class PaymentCharge extends MonopolyCode {
     public void doOperation(Player p) {
         int pBalance = p.getBalance();
         pBalance += amount;
-        showSummary(p, amount);
+        terminal.show(showSummary(p, amount));
         p.setBalance(pBalance);
     }
 

@@ -65,6 +65,22 @@
      </void>
     </object>
    </void>
+   <void index="2">
+    <object class="src.PaymentCharge">
+     <void property="amount">
+      <int>200</int>
+     </void>
+     <void property="description">
+      <string> COBRAS 200€ POR PASAR POR LA CASILLA DE SALIDA</string>
+     </void>
+     <void property="id">
+      <int>2</int>
+     </void>
+     <void property="terminal">
+      <object idref="TextTerminal0"/>
+     </void>
+    </object>
+   </void>
    <void index="3">
     <object class="src.Street">
      <void property="costStayingWithHouses">
@@ -1793,7 +1809,7 @@
     <void index="0">
      <object class="src.Player">
       <void property="balance">
-       <int>1500</int>
+       <int>1700</int>
       </void>
       <void property="color">
        <object class="java.lang.Enum" method="valueOf">
@@ -1802,7 +1818,7 @@
        </object>
       </void>
       <void property="name">
-       <string>jiame</string>
+       <string>JAIME</string>
       </void>
       <void property="properties">
        <object class="java.util.ArrayList"/>
@@ -1824,7 +1840,7 @@
        </object>
       </void>
       <void property="name">
-       <string>daniel</string>
+       <string>DANIEL</string>
       </void>
       <void property="properties">
        <object class="java.util.ArrayList"/>

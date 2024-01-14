@@ -23,6 +23,9 @@ public class Game implements Serializable {
         askForLanguage();
         saveGame(gameName);
         gameMenu(gameName, false);
+        if (players.length == 1) {
+            setWinner(players);
+        }
     }
 
     public Game loadGame(String gameName) {
@@ -106,8 +109,10 @@ public class Game implements Serializable {
             String translatedWhoseTurn = translator.translate(Constants.whoseTurn);
             terminal.show(translatedWhoseTurn);
             playerTurn = terminal.read();
-            String translatedErrorNumberPlayers = translator.translate(Constants.errorNumberPlayers);
-            terminal.show(String.format(translatedErrorNumberPlayers, players.length));
+            if (playerTurn < 1 || playerTurn > players.length) {
+                String translatedErrorNumberPlayers = translator.translate(Constants.errorNumberPlayers);
+                terminal.show(String.format(translatedErrorNumberPlayers, players.length));
+            }
         } while (playerTurn < 1 || playerTurn > players.length);
 
         Player player = players[playerTurn - 1];
@@ -168,6 +173,7 @@ public class Game implements Serializable {
         } catch (IOException e) {
             throw new IOException(Constants.errorReadingFile + file, e);
         }
+
     }
 
     public static void removePlayer(Player player) {
@@ -259,6 +265,16 @@ public class Game implements Serializable {
 
     public void setFinished(boolean finished) {
         this.finished = finished;
+    }
+
+    public void setWinner(Player[] players) {
+        if (players.length == 1) {
+            Player winner = players[0];
+            TranslatorManager translatorManager = terminal.getTranslatorManager();
+            Translator translator = translatorManager.getCurrentIdiom();
+            String translatedWinner = translator.translate(Constants.winner);
+            terminal.show(String.format(translatedWinner, winner.getName()));
+        }
     }
 
 }

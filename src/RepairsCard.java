@@ -44,6 +44,7 @@ public class RepairsCard extends MonopolyCode {
         }
 
         p.setBalance(pBalance);
+        terminal.show(showSummary(p, pBalance));
 
     }
 

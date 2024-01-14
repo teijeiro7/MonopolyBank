@@ -70,6 +70,9 @@ public class Constants {
         // ----------------------------------------------------------------------------------------------------showGameStatus
         public static String errorPlayerNull = "Player at index %d is null";
 
+        // ------------------------------------------------------------------------------------------------------setWinner
+        public static String winner = "The winner is: ";
+
         // PLAYER
         // ------------------------------------------------------------------------------------------------------
 
@@ -83,7 +86,7 @@ public class Constants {
 
         // -------------------------------------------------------------------------------------------------------pay
         public static final String whatAreYouGoingToPay = "You are going to pay %d euros";
-        public static final String askForPayment = "Do you want to make the payment of %d €? (Select 0 to cancel and 1 to confirm)";
+        public static final String askForPayment = "Do you want to make the payment of %d euros? (Select 0 to cancel and 1 to confirm)";
 
         // -----------------------------------------------------------------------------------------playerConstructor
         public static final String enterNamePlayer = "Enter the name of player %d: ";
@@ -100,7 +103,7 @@ public class Constants {
         public static final String payToOwner = "The player %s has to pay to %s";
 
         // -----------------------------------------------------------------------------------------mortgageStreet
-        public static final String askForMortgage = "Do you want to mortgage the property %s for %d€? (Select 0 to cancel and 1 to confirm): ";
+        public static final String askForMortgage = "Do you want to mortgage the property %s for %deuros? (Select 0 to cancel and 1 to confirm): ";
         public static final String canNotMortgage = "You can not mortgage if you have any houses or hotels built. Do you want to sell them? (Select 0 to cancel and 1 to confirm): ";
         public static final String confirmationMortgage = "You are going to mortgage %s for %d euros";
 
@@ -157,11 +160,11 @@ public class Constants {
         // PAYMENTCHARGE----------------------------------------------------------------------------------------------
 
         // ------------------------------------------------------------------------------------------------showSummary
-        public static final String showSummaryPay = "Player %s has paid %d €";
-        public static final String showSummaryEarn = "Player %s has earned %d €";
+        public static final String showSummaryPay = "Player %s has paid %d euros";
+        public static final String showSummaryEarn = "Player %s has earned %d euros";
 
         // REPAIRSCARD------------------------------------------------------------------------------------------------
 
         // ------------------------------------------------------------------------------------------------showSummary
-        public static final String showRepairSummary = "El jugador %s ha pagado %d €";
+        public static final String showRepairSummary = "El jugador %s ha pagado %d euros";
 }

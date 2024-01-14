@@ -216,7 +216,11 @@ public class Street extends Property {
     }
 
     public void buyProperty(Player player) {
-        terminal.show(String.format(Constants.confirmBuyProperty, getStreetName(), getPrice()));
+        TranslatorManager translatorManager = terminal.getTranslatorManager();
+        Translator translator = translatorManager.getCurrentIdiom();
+
+        String translatedConfirmBuyProperty = translator.translate(Constants.confirmBuyProperty);
+        terminal.show(String.format(translatedConfirmBuyProperty, getStreetName(), getPrice()));
         int confirmProperty = terminal.read();
 
         if (confirmProperty == 1) {
@@ -225,7 +229,9 @@ public class Street extends Property {
             int playerBalance = player.getBalance();
             playerBalance -= getPrice();
             player.setBalance(playerBalance);
-            terminal.show(String.format(Constants.confirmationBuyProperty, getPrice(), streetName));
+
+            String translatedConfirmationBuyProperty = translator.translate(Constants.confirmationBuyProperty);
+            terminal.show(String.format(translatedConfirmationBuyProperty, getPrice(), streetName));
         } else {
 
         }
